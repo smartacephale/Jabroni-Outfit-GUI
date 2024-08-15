@@ -1,0 +1,37 @@
+{
+  "name": "jabroni-outfit",
+  "description": "out-of-the-box gui and persistent-state library based on vue",
+  "version": "1.3.1",
+  "license": "MIT",
+  "keywords": ["gui", "tweaks", "ui", "persistent-state", "state-management"],
+  "author": "smartacephale atm.mormon@protonmail.com (https://github.com/smartacephale)",
+  "type": "module",
+  "homepage": "https://github.com/smartacephale/jabroni-outfit#readme",
+  "main": "./dist/jabroni-outfit.umd.js",
+  "module": "./dist/jabroni-outfit.es.js",
+  "repository": "github:smartacephale/jabroni-outfit",
+  "bugs": {
+    "url": "https://github.com/smartacephale/jabroni-outfit/issues",
+    "email": "atm.mormon@protonmail.com"
+  },
+  "browser": "./dist/jabroni-outfit.es.js",
+  "unpkg": "./dist/jabroni-outfit.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/jabroni-outfit.es.js",
+      "require": "./dist/jabroni-outfit.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "vue": "^3.4.37"
+  }
+}
