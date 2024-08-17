@@ -2,7 +2,7 @@ import { type Reactive, reactive, watch } from "vue";
 import type { NotifyApply, RecordV, StateOption, StateOptions } from "./types";
 import { PersistentState } from "./persistent-state";
 import { defaultStateInclExclMiscPagination } from "./default-state";
-import { parseIntegerOr } from "../utils";
+import { parseIntegerOr } from "billy-herrington-utils";
 
 export class JabroniOutfitStore {
   private callbacks: (NotifyApply)[] = [];

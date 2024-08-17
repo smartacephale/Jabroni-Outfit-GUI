@@ -1,49 +1,49 @@
 {
   "name": "jabroni-outfit",
   "description": "out-of-the-box gui and persistent-state library based on vue",
-  "version": "1.4.0",
+  "version": "1.4.3",
   "license": "MIT",
-  "keywords": [
-    "gui",
-    "tweaks",
-    "ui",
-    "persistent-state",
-    "state-management"
-  ],
+  "keywords": ["gui", "tweaks", "ui", "persistent-state", "state-management", "typescript", "vue"],
   "author": "smartacephale atm.mormon@protonmail.com (https://github.com/smartacephale)",
   "type": "module",
   "homepage": "https://github.com/smartacephale/jabroni-outfit#readme",
-  "main": "./dist/jabroni-outfit.umd.js",
-  "module": "./dist/jabroni-outfit.es.js",
+  "main": "dist/jabroni-outfit.umd.js",
+  "module": "dist/jabroni-outfit.es.js",
+  "types": "dist/index.d.ts",
   "repository": "github:smartacephale/jabroni-outfit",
   "bugs": {
     "url": "https://github.com/smartacephale/jabroni-outfit/issues",
     "email": "atm.mormon@protonmail.com"
   },
-  "browser": "./dist/jabroni-outfit.es.js",
-  "unpkg": "./dist/jabroni-outfit.es.js",
+  "browser": "dist/jabroni-outfit.es.js",
+  "unpkg": "dist/jabroni-outfit.es.js",
   "exports": {
     ".": {
       "import": "./dist/jabroni-outfit.es.js",
-      "require": "./dist/jabroni-outfit.umd.cjs"
+      "require": "./dist/jabroni-outfit.umd.cjs",
+      "types": "./dist/index.d.ts"
     }
   },
+  "files": ["src/**/*", "dist/**/*"],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10",
+    "tailwindcss-scoped-preflight": "^3.4.3",
     "typescript": "^5.5.3",
-    "vite": "^5.4.0"
+    "vite": "^5.4.0",
+    "vite-plugin-css-injected-by-js": "^3.5.1",
+    "vite-plugin-dts": "^4.0.3",
+    "vue-tsc": "^2.0.29"
   },
   "dependencies": {
-    "@vitejs/plugin-vue": "^5.1.2",
-    "vite-plugin-css-injected-by-js": "^3.5.1",
-    "vue": "^3.4.37",
-    "vue-tsc": "^2.0.29"
+    "billy-herrington-utils": "^1.1.1",
+    "vue": "^3.4.37"
   }
 }

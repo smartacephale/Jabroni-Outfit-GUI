@@ -1,7 +1,7 @@
-import { defaultStateWithDurationAndPrivacy } from "./store/default-state";
-import { JabroniOutfitStore } from "./store/store";
-import { JabroniOutfitUI } from "./ui";
-import { defaultSchemeWithPrivateFilter } from "./ui/default-scheme";
+import { defaultStateWithDurationAndPrivacy } from "../store/default-state";
+import { JabroniOutfitStore } from "../store/store";
+import { JabroniOutfitUI } from "../ui";
+import { defaultSchemeWithPrivateFilter } from "../ui/default-scheme";
 
 const example1 = () => {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -29,7 +29,7 @@ const example2 = () => {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   const store = new JabroniOutfitStore(myState as any);
 
-  const ui = new JabroniOutfitUI(store, {
+  new JabroniOutfitUI(store, {
     gradientColor1: [{ type: "text", model: "stateLocale.gradientColor1", placeholder: "color", labelBefore: "color1" }],
     gradientColor2: [{ type: "text", model: "stateLocale.gradientColor2", placeholder: "color", labelBefore: "color2" }],
     gradientColor3: [{ type: "text", model: "stateLocale.gradientColor3", placeholder: "color", labelBefore: "color3" }],
@@ -47,4 +47,5 @@ const example2 = () => {
   store.subscribe(drawGradient);
 }
 
-example1();
+// example1();
+example2();

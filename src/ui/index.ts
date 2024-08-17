@@ -3,7 +3,7 @@ import { DefaultScheme } from "./default-scheme";
 import type { Scheme } from "./types";
 import type { JabroniOutfitStore } from "../store/store";
 import App from "./vue-templates/App.vue"
-import { parseDom } from "../utils";
+import { parseDom } from "billy-herrington-utils";
 
 export class JabroniOutfitUI {
   constructor({ state, stateLocale }: JabroniOutfitStore, scheme: Scheme = DefaultScheme) {

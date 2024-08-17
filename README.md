@@ -7,7 +7,7 @@
 
 ## How to use
 ```
-<script src="https://unpkg.com/jabroni-outfit@1.3.0/dist/jabroni-outfit.umd.js"></script>
+<script src="https://unpkg.com/jabroni-outfit@latest/dist/jabroni-outfit.umd.js"></script>
 ```
 
 ```

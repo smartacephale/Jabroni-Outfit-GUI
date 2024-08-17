@@ -7,14 +7,8 @@
   <meta name="description" content="out-of-the-box gui and persistent-state library based on vue">
   <title>Jabroni Outfit</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="./src/style.css">
-  <script type="module" src="./src/example.ts"></script>
 
-  <!-- <script src="./dist/jabroni-outfit.umd.js"></script> -->
   <style>
     body {
       background: linear-gradient(180deg, black, coral);
@@ -22,96 +16,16 @@
       overflow: hidden;
       margin: 0;
     }
-
-    .codepen-container {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 60vw;
-      height: auto;
-    }
-
-    .vt323-regular {
-      font-family: "VT323", monospace;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    main * {
-      color: #fedfdf;
-      text-align: center;
-      font-family: "VT323", monospace;
-      font-weight: 400;
-      margin: 1rem
-    }
-
-    main h1 {
-      font-size: 6rem;
-    }
-
-    main h2 {
-      font-size: 3rem;
-    }
-
-    main a {
-      color: darksalmon;
-    }
   </style>
+
+  <script type="module" src="./src/test/example.ts"></script>
+
 </head>
 
 <body>
 
-  <!-- <div class="codepen-container">
-    <main>
-      <h1>Jabroni Outfit</h1>
-      <h2>out-of-the-box gui and persistent-state library based on vue</h2>
-      <h3><a href="https://github.com/smartacephale/jabroni-outfit">https://github.com/smartacephale/jabroni-outfit</a>
-      </h3>
-      <br>
-    </main>
-    <iframe height="400px" style="width: 100%;" scrolling="no" title="Untitled"
-      src="https://codepen.io/smartacephale/embed/bGPawde?default-tab=&editable=true&theme-id=dark" frameborder="no"
-      loading="lazy" allowtransparency="true" allowfullscreen="true">
-      See the Pen <a href="https://codepen.io/smartacephale/pen/bGPawde">
-        Untitled</a> by smartacephale (<a href="https://codepen.io/smartacephale">@smartacephale</a>)
-      on <a href="https://codepen.io">CodePen</a>.
-    </iframe>
-  </div> -->
-
-  <!-- <script>
-    const {
-      JabroniOutfitStore,
-      JabroniOutfitUI,
-      defaultStateWithDurationAndPrivacy,
-      defaultSchemeWithPrivateFilter
-    } = window.jabronioutfit;
-
-    const myState = {
-      gradientColor1: { value: "red", persistent: false, watch: true },
-      gradientColor2: { value: "coral", persistent: false, watch: true },
-      gradientColor3: { value: "orange", persistent: false, watch: true },
-      gradientEnabled: { value: true, persistent: false, watch: true },
-      uiEnabled: { value: true, persistent: true, watch: true }
-    }
-    const store = new JabroniOutfitStore(myState);
-
-    const ui = new JabroniOutfitUI(store, {
-      gradientColor1: [{ type: "text", model: "stateLocale.gradientColor1", placeholder: "color", labelBefore: "color1" }],
-      gradientColor2: [{ type: "text", model: "stateLocale.gradientColor2", placeholder: "color", labelBefore: "color2" }],
-      gradientColor3: [{ type: "text", model: "stateLocale.gradientColor3", placeholder: "color", labelBefore: "color3" }],
-      gradientEnabled: [{ type: "checkbox", model: "stateLocale.gradientEnabled", labelBefore: "gradient enabled" }],
-    });
-
-    function drawGradient() {
-      const { gradientColor1, gradientColor2, gradientColor3, gradientEnabled } = store.stateLocale;
-      if (!gradientEnabled) { document.body.style.background = 'coral'; return; }
-      document.body.style.background = `radial-gradient(${gradientColor1}, ${gradientColor2}, ${gradientColor3})`;
-    }
-
-    drawGradient();
-    store.subscribe(drawGradient);
-  </script> -->
+  <!-- <script src="./dist/jabroni-outfit.umd.js"></script>
+  <script src="./src/test/umd-example.js"></script> -->
 
 </body>
 

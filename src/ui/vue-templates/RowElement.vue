@@ -37,7 +37,6 @@ const updateValue = ({ target: { checked, value } }) => {
   if (!model?.startsWith("state")) return;
   const [stateName, stateProp] = model.split('.');
   const val = type === 'checkbox' ? checked : value;
-  console.log('change', val);
   props[stateName][stateProp] = val;
 };
 

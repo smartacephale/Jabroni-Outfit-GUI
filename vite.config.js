@@ -1,15 +1,17 @@
-import path from "node:path";
-import { defineConfig } from "vite";
+import path from 'node:path';
+import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from 'tailwindcss';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+import dts from 'vite-plugin-dts';
 
 export default ({ mode }) => {
   return defineConfig({
     plugins: [
       vue(),
       tailwindcss(),
-      cssInjectedByJsPlugin()
+      cssInjectedByJsPlugin(),
+      dts({ rollupTypes: true })
     ],
     define: {
       "process.env": {},
@@ -17,17 +19,15 @@ export default ({ mode }) => {
       __VUE_PROD_DEVTOOLS__: false,
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
     },
-    run: {
-      entry: path.resolve(__dirname, "./src/index.html")
-    },
     build: {
       watch: false,
+      minify: true,
+      sourcemap: true,
       lib: {
-        minify: true,
         entry: path.resolve(__dirname, "./src/index.ts"),
         name: "jabronioutfit",
         fileName: (format) => `jabroni-outfit.${format}.js`,
       }
-    },
+    }
   });
 };

@@ -1,3 +1,4 @@
+import { scopedPreflightStyles, isolateInsideOfContainer } from 'tailwindcss-scoped-preflight';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -5,11 +6,10 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx,vue}",
   ],
-  // prefix: "twww-",
-  theme: {
-    extend: {},
-  },
   plugins: [
+    scopedPreflightStyles({
+      isolationStrategy: isolateInsideOfContainer('.taper-class'),
+    }),
   ],
   important: '.taper-class',
 }
