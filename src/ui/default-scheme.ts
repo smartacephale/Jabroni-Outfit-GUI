@@ -11,7 +11,10 @@ export const DefaultScheme: Scheme = {
   ],
   infiniteScroll: [
     { type: "checkbox", model: "state.infiniteScrollEnabled", label: "infinite scroll" },
-    { type: "span", innerText: "{{ stateLocale.pagIndexCur }}/{{ stateLocale.pagIndexLast }}", "v-if": "stateLocale.pagIndexLast > 1" }
+    {
+      type: "span", innerText:
+        "return `${stateLocale.pagIndexCur}/${stateLocale.pagIndexLast}`", "v-if": "stateLocale.pagIndexLast > 1"
+    }
   ],
   durationFilter: [
     { type: "checkbox", model: "state.filterDuration", label: "duration" },

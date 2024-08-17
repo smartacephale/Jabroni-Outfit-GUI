@@ -1,8 +1,16 @@
 import path from "node:path";
 import { defineConfig } from "vite";
+import vue from '@vitejs/plugin-vue'
+import tailwindcss from 'tailwindcss';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 export default ({ mode }) => {
   return defineConfig({
+    plugins: [
+      vue(),
+      tailwindcss(),
+      cssInjectedByJsPlugin()
+    ],
     define: {
       "process.env": {},
       __VUE_OPTIONS_API__: false,
@@ -11,11 +19,6 @@ export default ({ mode }) => {
     },
     run: {
       entry: path.resolve(__dirname, "./src/index.html")
-    },
-    resolve: {
-      alias: {
-        vue: 'vue/dist/vue.esm-bundler.js',
-      }
     },
     build: {
       watch: false,

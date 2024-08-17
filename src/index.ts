@@ -1,3 +1,4 @@
+import './style.css'
 export { JabroniOutfitStore } from "./store/store";
 export {
   defaultStateWithDurationAndPrivacy,
