@@ -3,17 +3,17 @@ import type { Scheme } from "./types";
 export const DefaultScheme: Scheme = {
   excludeFilter: [
     { type: "checkbox", model: "state.filterExclude", label: "exclude" },
-    { type: "text", model: "state.filterExcludeWords", placeholder: "regexp: word, word1|word2, f:full_word..." }
+    { type: "text", model: "state.filterExcludeWords", placeholder: "word, word1|word2, f:full_word..." }
   ],
   includeFilter: [
     { type: "checkbox", model: "state.filterInclude", label: "include" },
-    { type: "text", model: "state.filterIncludeWords", placeholder: "regexp: word, word1|word2, f:full_word..." }
+    { type: "text", model: "state.filterIncludeWords", placeholder: "word, word1|word2, f:full_word..." }
   ],
   infiniteScroll: [
     { type: "checkbox", model: "state.infiniteScrollEnabled", label: "infinite scroll" },
     {
       type: "span", innerText:
-        "return `${stateLocale.pagIndexCur}/${stateLocale.pagIndexLast}`", "v-if": "stateLocale.pagIndexLast > 1"
+        "return `${stateLocale.pagIndexCur}/${stateLocale.pagIndexLast}`", "v-if": "return stateLocale.pagIndexLast > 1"
     }
   ],
   durationFilter: [
