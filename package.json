@@ -1,7 +1,7 @@
 {
   "name": "jabroni-outfit",
   "description": "out-of-the-box gui and persistent-state library based on vue",
-  "version": "1.4.3",
+  "version": "1.4.5",
   "license": "MIT",
   "keywords": ["gui", "tweaks", "ui", "persistent-state", "state-management", "typescript", "vue"],
   "author": "smartacephale atm.mormon@protonmail.com (https://github.com/smartacephale)",

@@ -8,9 +8,7 @@ const example1 = () => {
   (defaultSchemeWithPrivateFilter as any).privateFilter.push(
     { type: "button", innerText: "check access 🔓", callback: () => { } });
   const store = new JabroniOutfitStore(defaultStateWithDurationAndPrivacy);
-  const ui = new JabroniOutfitUI(store, defaultSchemeWithPrivateFilter);
-
-  console.log(store, ui);
+  new JabroniOutfitUI(store, defaultSchemeWithPrivateFilter);
 
   store.subscribe((subj) => {
     const satisfy = /filter/gi.test(Object.keys(subj)[0]);
@@ -34,7 +32,7 @@ const example2 = () => {
     gradientColor2: [{ type: "text", model: "stateLocale.gradientColor2", placeholder: "color", labelBefore: "color2" }],
     gradientColor3: [{ type: "text", model: "stateLocale.gradientColor3", placeholder: "color", labelBefore: "color3" }],
     gradientEnabled: [{ type: "checkbox", model: "stateLocale.gradientEnabled", labelBefore: "gradient enabled" }],
-  });
+  }, '#lol', { fixed: false });
 
   function drawGradient() {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -47,5 +45,5 @@ const example2 = () => {
   store.subscribe(drawGradient);
 }
 
-// example1();
+example1();
 example2();

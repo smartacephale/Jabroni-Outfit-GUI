@@ -17,3 +17,11 @@ export type SchemeRow = SchemeRowEl[];
 export interface Scheme {
   [key: string]: SchemeRow
 }
+
+export interface UIPosition {
+  fixed: boolean,
+  left?: boolean,
+  right?: boolean,
+  top?: boolean,
+  bottom?: boolean
+}

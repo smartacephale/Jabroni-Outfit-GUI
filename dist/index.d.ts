@@ -23,7 +23,8 @@ export declare class JabroniOutfitStore {
 }
 
 export declare class JabroniOutfitUI {
-    constructor({ state, stateLocale }: JabroniOutfitStore, scheme?: Scheme);
+    private getRoot;
+    constructor({ state, stateLocale }: JabroniOutfitStore, scheme?: Scheme, rootSelector?: string, position?: UIPosition);
 }
 
 declare type NotifyApply = (input: RecordV) => void;
@@ -58,5 +59,13 @@ declare interface StateOption {
 }
 
 declare type StateOptions = Record<string, StateOption>;
+
+declare interface UIPosition {
+    fixed: boolean;
+    left?: boolean;
+    right?: boolean;
+    top?: boolean;
+    bottom?: boolean;
+}
 
 export { }
