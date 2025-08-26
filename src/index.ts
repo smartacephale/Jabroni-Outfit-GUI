@@ -3,11 +3,15 @@ export { JabroniOutfitStore } from "./store/store";
 export {
   defaultStateWithDurationAndPrivacy,
   defaultStateInclExclMiscPagination,
-  defaultStateWithDuration
+  defaultStateWithDuration,
+  defaultStateWithDurationAndHD,
+  defaultStateWithDurationAndPrivacyAndHD,
 } from "./store/default-state";
 export { JabroniOutfitUI } from "./ui";
 export {
-  defaultSchemeWithPrivateFilter,
+  defaultSchemeWithPrivacyFilter,
+  defaultSchemeWithPrivacyFilterWithHD,
+  defaultSchemeWithPrivacyFilterWithHDwithSort,
   DefaultScheme,
-  extendDefaultScheme
+  extendScheme
 } from "./ui/default-scheme";

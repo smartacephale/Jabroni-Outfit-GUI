@@ -6,10 +6,10 @@ import type { SchemeRowEl } from "../types";
 const props = defineProps<{
   element?: SchemeRowEl,
   state: Reactive<RecordV>,
-  stateLocale: Reactive<RecordV>,
+  localState: Reactive<RecordV>,
 }>();
 
-const { element, state, stateLocale } = props;
+const { element, state, localState } = props;
 
 const { type, model, innerText, label, labelBefore, callback, ...rest } = element as SchemeRowEl;
 
@@ -28,22 +28,23 @@ const componentStyles = {
 
 const innerTextValue = computed(() => {
   if (!innerText?.includes('return')) return innerText || "";
-  const f = new Function('state', 'stateLocale', `${innerText}`);
-  return f(state, stateLocale);
+  const f = new Function('state', 'localState', `${innerText}`);
+  return f(state, localState);
 });
 
-const value = new Function('state', 'stateLocale', `return ${model || ""}`)(state, stateLocale);
+const value = new Function('state', 'localState', `return ${model || ""}`)(state, localState);
+
 const updateValue = ({ target: { checked, value } }) => {
-  if (!model?.startsWith("state")) return;
-  const [stateName, stateProp] = model.split('.');
+  if (!(typeof model === 'string') || !/^state|localState/.test(model)) return;
+  const [stateName, stateProp] = (model).split('.');
   const val = type === 'checkbox' ? checked : value;
   props[stateName][stateProp] = val;
 };
 
 const vif = computed(() => {
   if (!element?.['v-if']) return true;
-  const f = new Function('state', 'stateLocale', `${element['v-if']}`);
-  return f(state, stateLocale);
+  const f = new Function('state', 'localState', `${element['v-if']}`);
+  return f(state, localState);
 });
 
 // button state

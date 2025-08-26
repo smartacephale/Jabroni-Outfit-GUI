@@ -13,7 +13,7 @@ export const DefaultScheme: Scheme = {
     { type: "checkbox", model: "state.infiniteScrollEnabled", label: "infinite scroll" },
     {
       type: "span", innerText:
-        "return `${stateLocale.pagIndexCur}/${stateLocale.pagIndexLast}`", "v-if": "return stateLocale.pagIndexLast > 1"
+        "return `${localState.pagIndexCur}/${localState.pagIndexLast}`", "v-if": "return localState.pagIndexLast > 1"
     }
   ],
   durationFilter: [
@@ -23,16 +23,52 @@ export const DefaultScheme: Scheme = {
   ],
 }
 
-export const extendDefaultScheme = (newScheme: Scheme) =>
-  Object.entries(DefaultScheme).reduce((acc, [k, v], i) => {
+export const customScheme: Scheme = {
+  sortFilter: [
+    {
+      type: "span", innerText: 'sort by:'
+    },
+    {
+      type: 'button',
+      innerText: 'views',
+      callback: () => {
+        //@ts-ignore
+        if (window?.sortByViews) window.sortByViews();
+      },
+    },
+    {
+      type: 'button',
+      innerText: 'duration',
+      callback: () => {
+        //@ts-ignore
+        if (window?.sortByDuration) window.sortByDuration();
+      },
+    }],
+  privacyFilter: [
+    { type: "checkbox", model: "state.filterPrivate", label: "private" },
+    { type: "checkbox", model: "state.filterPublic", label: "public" }
+  ],
+  hdFilter: [
+    { type: "checkbox", model: "state.filterHD", label: "HD" },
+  ]
+}
+
+export const extendScheme = (scheme: Scheme, newScheme: Scheme) =>
+  Object.entries(scheme).reduce((acc, [k, v], i) => {
     if (i === 2) Object.assign(acc, newScheme);
     Object.assign(acc, { [k]: v });
     return acc;
   }, {});
 
-export const defaultSchemeWithPrivateFilter = extendDefaultScheme({
-  privateFilter: [
-    { type: "checkbox", model: "state.filterPrivate", label: "private" },
-    { type: "checkbox", model: "state.filterPublic", label: "public" }
-  ]
+export const defaultSchemeWithPrivacyFilter = extendScheme(DefaultScheme, {
+  privacyFilter: customScheme.privacyFilter
 });
+
+export const defaultSchemeWithPrivacyFilterWithHD = extendScheme(defaultSchemeWithPrivacyFilter, {
+  hdFilter: customScheme.hdFilter
+});
+
+export const defaultSchemeWithPrivacyFilterWithHDwithSort = extendScheme(defaultSchemeWithPrivacyFilterWithHD, {
+  sortFilter: customScheme.sortFilter
+});
+

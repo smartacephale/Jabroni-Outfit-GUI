@@ -5,25 +5,27 @@ import type { JabroniOutfitStore } from "../store/store";
 import App from "./vue-templates/App.vue"
 import { parseDom } from "billy-herrington-utils";
 
+const DEFAULT_ROOT = 'jabroni-outfit-root';
+
 export class JabroniOutfitUI {
-  private getRoot(rootSelector: string | undefined) {
-    let root: string | undefined = rootSelector;
-    if (!root) {
-      const rootEl = parseDom('<div id="jabroni-outfit" style="position: relative; z-index: 999999;"></div>');
+  public app: ReturnType<typeof createApp>;
+
+  private getRoot(rootSelector: string) {
+    if (rootSelector === DEFAULT_ROOT) {
+      const rootEl = parseDom(`<div id="${rootSelector}" style="position: relative; z-index: 999999;"></div>`);
       document.body.appendChild(rootEl);
-      root = "#tapermonkey-app";
     }
-    document.querySelector(root)?.classList.add('taper-class');
-    return root;
+    document.getElementById(rootSelector)?.classList.add('taper-class');
+    return `#${rootSelector}`;
   }
 
   constructor(
-    { state, stateLocale }: JabroniOutfitStore,
+    { state, localState }: JabroniOutfitStore,
     scheme: Scheme = DefaultScheme,
-    rootSelector?: string,
+    rootSelector = DEFAULT_ROOT,
     position: UIPosition = { fixed: true, right: true, bottom: true }
   ) {
-    const app = createApp(App, { state, stateLocale, scheme, position });
-    app.mount(this.getRoot(rootSelector));
+    this.app = createApp(App, { state, localState, scheme, position });
+    this.app.mount(this.getRoot(rootSelector));
   }
 }

@@ -22,6 +22,9 @@ export const stateOptions = {
     filterPrivate: { value: false, persistent: true, watch: true },
     filterPublic: { value: false, persistent: true, watch: true }
   },
+  HD_FILTER: {
+    filterHD: { value: false, persistent: true, watch: true }
+  },
   PAGINATION: {
     pagIndexLast: { value: 1, persistent: false, watch: true },
     pagIndexCur: { value: 1, persistent: false, watch: true }
@@ -30,4 +33,6 @@ export const stateOptions = {
 
 export const defaultStateInclExclMiscPagination: StateOptions = Object.assign({}, stateOptions.EXCLUDE, stateOptions.INCLUDE, stateOptions.MISC, stateOptions.PAGINATION);
 export const defaultStateWithDuration: StateOptions = Object.assign({}, defaultStateInclExclMiscPagination, stateOptions.DURATION_FILTER);
+export const defaultStateWithDurationAndHD: StateOptions = Object.assign({}, defaultStateWithDuration, stateOptions.HD_FILTER);
 export const defaultStateWithDurationAndPrivacy: StateOptions = Object.assign({}, defaultStateWithDuration, stateOptions.PRIVACY_FILTER);
+export const defaultStateWithDurationAndPrivacyAndHD: StateOptions = Object.assign({}, defaultStateWithDurationAndPrivacy, stateOptions.HD_FILTER);
