@@ -1,52 +1,64 @@
-import { defaultStateWithDurationAndPrivacyAndHD } from "../store/default-state";
-import { JabroniOutfitStore } from "../store/store";
-import type { StateOptions } from "../store/types";
-import { JabroniOutfitUI } from "../ui";
-import { defaultSchemeWithPrivacyFilterWithHDwithSort } from "../ui/default-scheme";
-import type { Scheme } from "../ui/types";
-
-const example1 = () => {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  (defaultSchemeWithPrivacyFilterWithHDwithSort as any).privacyFilter.push(
-    { type: "button", innerText: "check access 🔓", callback: () => { } });
-
-  const store = new JabroniOutfitStore(defaultStateWithDurationAndPrivacyAndHD);
-
-  new JabroniOutfitUI(store, defaultSchemeWithPrivacyFilterWithHDwithSort); 
-
-  store.subscribe((subj) => {
-    const satisfy = /filter/gi.test(Object.keys(subj)[0]);
-    console.log({ ...subj, satisfy });
-  });
-}
-
-example1();
+import { JabronioGUI } from '../app';
+import { DefaultScheme, setupScheme } from '../scheme/default-scheme';
+import { JabronioStore } from '../store';
+import type { SchemeInput, StoreStateOptions } from '../types';
 
 const example2 = () => {
-  const customState: StateOptions = {
-    gradientColor1: { value: "red", persistent: false, watch: true, type: "string" },
-    gradientColor2: { value: "coral", persistent: false, watch: true, type: "string" },
-    gradientColor3: { value: "orange", persistent: false, watch: true, type: "string" },
-    gradientEnabled: { value: true, persistent: false, watch: true, type: "boolean" },
-    uiEnabled: { value: true, persistent: true, watch: true, type: "boolean" }
-  }
-
-  const store = new JabroniOutfitStore(customState);
-
-  const customScheme: Scheme = {
-    gradientColor1: [{ type: "text", model: "localState.gradientColor1", placeholder: "color", labelBefore: "color1" }],
-    gradientColor2: [{ type: "text", model: "localState.gradientColor2", placeholder: "color", labelBefore: "color2" }],
-    gradientColor3: [{ type: "text", model: "localState.gradientColor3", placeholder: "color", labelBefore: "color3" }],
-    gradientEnabled: [{ type: "checkbox", model: "localState.gradientEnabled", labelBefore: "gradient enabled" }],
+  const customState: StoreStateOptions = {
+    uiEnabled: true,
+    hidden: false,
   };
 
-  new JabroniOutfitUI(store, customScheme);
+  const store = new JabronioStore(customState);
+
+  const scheme: SchemeInput = setupScheme(
+    DefaultScheme.map((t) => t.title).filter(Boolean) as string[],
+    // [],
+    [
+      {
+        title: 'Colors',
+        collapsed: true,
+        content: [
+          {
+            $color1: 'coral',
+          },
+          {
+            color2: 'crimson',
+          },
+          {
+            $color3: 'tomato',
+          },
+          {
+            size: 100,
+            type: 'range',
+            max: '500',
+            min: '0',
+          },
+          {
+            gradientEnabled: true,
+            label: 'gradient enabled',
+          },
+          {
+            reset: () => {
+              store.state.$color1 = 'darkslateblue';
+              store.state.color2 = 'maroon';
+              store.state.$color3 = 'darksalmon';
+            },
+          },
+        ],
+      },
+    ],
+  );
+
+  new JabronioGUI(scheme, store);
 
   function drawGradient() {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const { gradientColor1, gradientColor2, gradientColor3, gradientEnabled } = store.localState as any;
-    if (!gradientEnabled) { document.body.style.background = 'blue'; return; }
-    document.body.style.background = `radial-gradient(${gradientColor1}, ${gradientColor2}, ${gradientColor3})`;
+    const { $color1, color2, $color3, gradientEnabled, size } = store.state;
+    if (!gradientEnabled) {
+      document.body.style.background = '#000';
+      return;
+    }
+    document.body.style.background = `repeating-radial-gradient(${$color1}, ${color2}, ${$color3} ${size}%)`;
   }
 
   drawGradient();
@@ -54,6 +66,6 @@ const example2 = () => {
   store.subscribe(() => {
     drawGradient();
   });
-}
+};
 
 example2();

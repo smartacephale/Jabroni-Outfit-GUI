@@ -1,0 +1,126 @@
+import type { SchemeInput } from '../types';
+
+export const DefaultScheme: SchemeInput = [
+  {
+    title: 'Text Filter',
+    collapsed: true,
+    content: [
+      { filterExclude: false, label: 'exclude' },
+      {
+        filterExcludeWords: '',
+        label: 'keywords',
+        watch: 'filterExclude',
+        placeholder: 'word, word1|word2, f:full_word...',
+      },
+      { filterInclude: false, label: 'include' },
+      {
+        filterIncludeWords: '',
+        label: 'keywords',
+        watch: 'filterInclude',
+        placeholder: 'word, word1|word2, f:full_word...',
+      },
+    ],
+  },
+  {
+    title: 'Duration Filter',
+    collapsed: true,
+    content: [
+      { filterDuration: false, label: 'enable' },
+      { filterDurationMinutes: true, label: 'minutes (seconds by default)' },
+      {
+        filterDurationFrom: 0,
+        watch: 'filterDuration',
+        label: 'from',
+      },
+      {
+        filterDurationTo: 600,
+        watch: 'filterDuration',
+        label: 'to',
+      },
+    ],
+  },
+  {
+    title: 'Sort By',
+    content: [
+      {
+        views: () => {
+          //@ts-expect-error
+          window.sortByViews?.();
+        },
+      },
+      {
+        duration: () => {
+          //@ts-expect-error
+          window.sortByDuration?.();
+        },
+      },
+    ],
+  },
+  {
+    title: 'Privacy Filter',
+    content: [
+      { filterPrivate: false, label: 'private' },
+      { filterPublic: false, label: 'public' },
+      {
+        'check access 🔓': () => {
+          //@ts-expect-error
+          window.requestAccess?.();
+        },
+      },
+    ],
+  },
+
+  {
+    title: 'Quality Filter',
+    content: [{ filterHD: false, label: 'HD' }],
+  },
+  {
+    title: 'Advanced',
+    content: [
+      {
+        infiniteScrollEnabled: true,
+        label: 'infinite scroll',
+      },
+      {
+        autoRequestAccess: false,
+        label: 'auto friend request',
+      },
+      {
+        writeHistory: false,
+      },
+    ],
+  },
+  {
+    // Pagination
+    title: 'Badge',
+    content: [
+      {
+        text: 'return `${state.$paginationOffset}/${state.$paginationLast}`',
+        vif: 'return state.$paginationLast > 1',
+      },
+    ],
+  },
+];
+
+function selectFromScheme(keys: string[], scheme: SchemeInput): SchemeInput {
+  return scheme.filter((g) => g.title && keys.some((k) => k === g.title));
+}
+
+export function setupScheme(
+  selectFromDefaults: string[],
+  customScheme: SchemeInput = [],
+  order?: string[],
+) {
+  const selectedScheme: SchemeInput = selectFromScheme(
+    selectFromDefaults,
+    DefaultScheme,
+  );
+
+  selectedScheme.push(...customScheme);
+
+  if (order) {
+    return selectFromScheme(order, selectedScheme);
+  }
+
+  return selectedScheme;
+}

@@ -1,131 +1,91 @@
-<h1 align="center">Jabroni Outfit</h1>
-<h3 align="center">out-of-the-box gui and persistent-state library</h3>
-<p align="center"><a href="https://smartacephale.github.io/jabroni-outfit/">https://smartacephale.github.io/jabroni-outfit/</a></p>
+<h1 align="center">Jabroni Outfit GUI</h1>
+<h3 align="center">Small GUI and Persistent State library based on Vue</h1>
+<p align="center"><a href="https://smartacephale.github.io/Jabroni-Outfit-GUI/">https://smartacephale.github.io/Jabroni-Outfit-GUI/</a></p> 
 <p align="center">
-  <img src="https://i.imgur.com/hCyUJvd.png" alt="Sublime's custom image"/>
+  <img src="https://repository-images.githubusercontent.com/842958864/1e2ce513-9289-4e51-b68b-0e7f3de255d0" alt="Sublime's custom image"/>
 </p>
 
-### Introduction
-
-The `jabroni-outfit` library is a versatile tool for creating user interfaces with persistent state management. It provides a simple and efficient way to define state variables, build UI controls, and automatically update the UI based on state changes.
-
-### Key Features
-
-- **State Management:**
-  - Define state variables with properties like `value`, `persistent`, and `watch`.
-  - Easily manage and update state values throughout your application.
-- **UI Creation:**
-  - Create UI controls (e.g., text inputs, checkboxes) based on state variables.
-  - Automatically update the UI whenever state values change.
-- **Persistence:**
-  - Store state values persistently across application sessions.
-- **Flexibility:**
-  - Customize the UI and state management to fit your specific needs.
+### Features
+- Store vaiables are persistent by default.
+- Store variable with <$> prefix are not persistent.
 
 ### Usage
 
-**1. Import the Library:**
+**Import the Library:**
 
 ```javascript
-import { JabroniOutfitStore, JabroniOutfitUI } from 'jabroni-outfit';
+import { JabronioStore, JabronioGUI } from 'jabroni-outfit';
 ```
 or umd cdn:
 ```javascript
 <script src="https://unpkg.com/jabroni-outfit@latest/dist/jabroni-outfit.umd.js"></script>
 ...
-const { JabroniOutfitStore, JabroniOutfitUI } = window.jabronioutfit;
-```
-
-**2. Define State Variables:**
-
-Create an object containing state variables. Each variable has properties:
-
-- `value`: The current value of the state variable.
-- `persistent`: Boolean indicating if the value should be stored persistently.
-- `watch`: Boolean indicating if the UI should update when the value changes.
-
-```javascript
-const myState = {
-  gradientColor1: { value: "red", persistent: false, watch: true },
-  // ... other state variables
-};
-```
-
-**3. Create a Store:**
-
-Instantiate a `JabroniOutfitStore` object with your state definition.
-
-```javascript
-const store = new JabroniOutfitStore(myState);
-```
-
-**4. Create UI Controls:**
-
-Define an object mapping state variables to UI control configurations.
-
-```javascript
-const uiConfig = {
-  gradientColor1: [{ type: "text", model: "localState.gradientColor1" }],
-  // ... other UI controls
-};
-```
-
-**5. Create the UI:**
-
-Instantiate a `JabroniOutfitUI` object with the store and UI configuration.
-
-```javascript
-const ui = new JabroniOutfitUI(store, uiConfig);
-```
-
-**6. Subscribe to reactive data:**
-
-Use the `subscribe` method on the store to trigger updates whenever the state changes.
-
-```javascript
-store.subscribe(() => {
-  // ...
-});
+const { JabronioStore, JabronioGUI } = window.jabronioutfit;
 ```
 
 ### Example
 
 ```javascript
+const { JabronioStore, JabronioGUI } = window.jabronioutfit;
 
-const {
-  JabroniOutfitStore,
-  JabroniOutfitUI
-} = window.jabronioutfit;
+const example = () => {
+  const customState = {
+    myFancyVariable: true,
+  };
+  const store = new JabronioStore(customState);
 
-const customState = {
-  gradientColor1: { value: "red", persistent: false, watch: true, type: "string" },
-  gradientColor2: { value: "coral", persistent: false, watch: true, type: "string" },
-  gradientColor3: { value: "orange", persistent: false, watch: true, type: "string" },
-  gradientEnabled: { value: true, persistent: false, watch: true, type: "boolean" },
-  uiEnabled: { value: true, persistent: true, watch: true, type: "boolean" }
-}
+  const scheme = [
+    {
+      title: 'Colors',
+      collapsed: true,
+      content: [
+        {
+          $color1: 'coral',
+        },
+        {
+          color2: 'crimson',
+        },
+        {
+          $color3: 'tomato',
+        },
+        {
+          size: 100,
+          type: 'range',
+          max: '500',
+          min: '0',
+        },
+        {
+          gradientEnabled: true,
+          label: 'gradient enabled',
+        },
+        {
+          reset: () => {
+            store.state.$color1 = 'darkslateblue';
+            store.state.color2 = 'maroon';
+            store.state.$color3 = 'darksalmon';
+          },
+        },
+      ],
+    },
+  ];
 
-const store = new JabroniOutfitStore(customState);
+  new JabronioGUI(scheme, store);
 
-const customScheme = {
-  gradientColor1: [{ type: "text", model: "localState.gradientColor1", placeholder: "color", labelBefore: "color1" }],
-  gradientColor2: [{ type: "text", model: "localState.gradientColor2", placeholder: "color", labelBefore: "color2" }],
-  gradientColor3: [{ type: "text", model: "localState.gradientColor3", placeholder: "color", labelBefore: "color3" }],
-  gradientEnabled: [{ type: "checkbox", model: "localState.gradientEnabled", labelBefore: "gradient enabled" }],
+  function drawGradient() {
+    const { $color1, color2, $color3, gradientEnabled, size } = store.state;
+    if (!gradientEnabled) {
+      document.body.style.background = '#000';
+      return;
+    }
+    document.body.style.background = `repeating-radial-gradient(${$color1}, ${color2}, ${$color3} ${size}%)`;
+  }
+
+  drawGradient();
+
+  store.subscribe(() => {
+    drawGradient();
+  });
 };
 
-new JabroniOutfitUI(store, customScheme, '#lol');
-
-function drawGradient() {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  const { gradientColor1, gradientColor2, gradientColor3, gradientEnabled } = store.localState;
-  if (!gradientEnabled) { document.body.style.background = 'blue'; return; }
-  document.body.style.background = `radial-gradient(${gradientColor1}, ${gradientColor2}, ${gradientColor3})`;
-}
-
-drawGradient();
-
-store.subscribe(() => {
-  drawGradient();
-});
+example();
 ```

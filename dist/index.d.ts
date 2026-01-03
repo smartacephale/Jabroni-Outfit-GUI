@@ -1,81 +1,84 @@
 import { createApp } from 'vue';
 import { Reactive } from 'vue';
 
-export declare const DefaultScheme: Scheme;
+export declare type Callback<T> = (...args: T[]) => void;
 
-export declare const defaultSchemeWithPrivacyFilter: {};
+export declare type HTMLInputType = 'checkbox' | 'text' | 'number' | 'range' | '';
 
-export declare const defaultSchemeWithPrivacyFilterWithHD: {};
+export declare type HTMLTag = keyof HTMLElementTagNameMap;
 
-export declare const defaultSchemeWithPrivacyFilterWithHDwithSort: {};
+export declare type HTMLTagOrInputType = keyof HTMLElementTagNameMap | HTMLInputType;
 
-export declare const defaultStateInclExclMiscPagination: StateOptions;
-
-export declare const defaultStateWithDuration: StateOptions;
-
-export declare const defaultStateWithDurationAndHD: StateOptions;
-
-export declare const defaultStateWithDurationAndPrivacy: StateOptions;
-
-export declare const defaultStateWithDurationAndPrivacyAndHD: StateOptions;
-
-export declare const extendScheme: (scheme: Scheme, newScheme: Scheme) => {};
-
-export declare class JabroniOutfitStore {
-    private callbacks;
-    state: Reactive<RecordV> | undefined;
-    localState: Reactive<RecordV> | undefined;
-    constructor(options?: StateOptions);
-    subscribe(callback: NotifyApply): void;
-    notify(subject: RecordV): void;
-    parseState: (st: StateOptions) => void;
-}
-
-export declare class JabroniOutfitUI {
+export declare class JabronioGUI {
     app: ReturnType<typeof createApp>;
     private getRoot;
-    constructor({ state, localState }: JabroniOutfitStore, scheme?: Scheme, rootSelector?: string, position?: UIPosition);
+    constructor(scheme: SchemeInput, store: JabronioStore, rootSelector?: string, position?: string);
 }
 
-declare type NotifyApply = (input: RecordV) => void;
-
-declare type RecordV = Record<string, string | number | boolean>;
-
-declare interface Scheme {
-    [key: string]: SchemeRow;
+export declare class JabronioStore {
+    private callbacks;
+    state: StoreState;
+    constructor(options?: StoreStateOptions);
+    subscribe(callback: Callback<StoreStateRaw>): void;
+    notify(subject: StoreStateRaw): void;
+    add(key: string, value: Primitive, watchKey?: string, safe?: boolean): this;
+    parseState(options: StoreStateOptions): void;
 }
 
-declare type SchemeRow = SchemeRowEl[];
+export declare type Primitive = string | number | boolean;
 
-declare interface SchemeRowEl {
-    type: 'checkbox' | 'text' | 'number' | 'span' | 'button';
-    model?: string;
-    label?: string;
-    labelBefore?: string;
-    innerText?: string;
-    max?: string;
-    min?: string;
+export declare type RawSchemeElement = Partial<Exclude<_RawSchemeElement, keyof SchemeGroup<_RawSchemeElement>>>;
+
+declare type _RawSchemeElement = Partial<SchemeElement> & {
+    [x: string]: Primitive | (() => void);
+};
+
+declare class SchemeElement {
+    name?: string;
+    value?: Primitive | (() => void);
+    watch?: string;
     step?: string;
-    "v-if"?: string;
+    min?: string;
+    max?: string;
+    vif?: string;
+    text?: string;
+    type: HTMLTagOrInputType;
+    label?: string;
     placeholder?: string;
-    callback?: () => void;
+    id: string;
+    constructor(schemeElement: RawSchemeElement);
+    private parseType;
+    private parseNumber;
+    private parseLabel;
+    private parseModel;
+    get isInput(): boolean;
+    get htmlTag(): HTMLTag;
+    get inputType(): HTMLInputType;
+    get callback(): (() => void) | undefined;
 }
 
-declare interface StateOption {
-    value: string | number | boolean;
-    persistent: boolean;
-    watch: boolean | string;
-    type: string;
-}
+export declare type SchemeGroup<T> = {
+    title: string;
+    content: T[];
+    collapsed: boolean;
+    id: string;
+};
 
-declare type StateOptions = Record<string, StateOption>;
+export declare type SchemeInput = Partial<SchemeSection<RawSchemeElement>>[];
 
-declare interface UIPosition {
-    fixed: boolean;
-    left?: boolean;
-    right?: boolean;
-    top?: boolean;
-    bottom?: boolean;
-}
+export declare type SchemeParsed = SchemeGroup<SchemeElement>[];
+
+export declare type SchemeSection<T> = T | SchemeGroup<T>;
+
+export declare function setupScheme(selectFromDefaults: string[], customScheme?: SchemeInput, order?: string[]): SchemeInput;
+
+export declare type StoreState = Reactive<StoreStateRaw>;
+
+export declare type StoreStateOptions = Record<string, {
+    watch?: string;
+    value: Primitive;
+} | Primitive>;
+
+export declare type StoreStateRaw = Record<string, Primitive>;
 
 export { }

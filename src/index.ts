@@ -1,17 +1,4 @@
-import './style.css'
-export { JabroniOutfitStore } from "./store/store";
-export {
-  defaultStateWithDurationAndPrivacy,
-  defaultStateInclExclMiscPagination,
-  defaultStateWithDuration,
-  defaultStateWithDurationAndHD,
-  defaultStateWithDurationAndPrivacyAndHD,
-} from "./store/default-state";
-export { JabroniOutfitUI } from "./ui";
-export {
-  defaultSchemeWithPrivacyFilter,
-  defaultSchemeWithPrivacyFilterWithHD,
-  defaultSchemeWithPrivacyFilterWithHDwithSort,
-  DefaultScheme,
-  extendScheme
-} from "./ui/default-scheme";
+export { JabronioGUI } from './app';
+export { setupScheme } from './scheme/default-scheme';
+export { JabronioStore } from './store';
+export * from './types';

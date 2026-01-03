@@ -1,0 +1,30 @@
+@import "tailwindcss/theme";
+
+@layer base, components, utilities;
+
+@layer base {
+  .taper-class {
+    @import "tailwindcss/preflight";
+    
+    &, & *, & ::after, & ::before {
+      all: revert-layer;
+    }
+  }
+}
+
+@layer utilities {
+  .taper-class {
+    @import "tailwindcss/utilities";
+  }
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@layer components {
+  .tw-input-colors {
+    @apply border-black focus:outline-none focus:bg-yellow-50;
+    @apply dark:text-zinc-300 dark:bg-zinc-700 dark:focus:outline-gray-600
+                  dark:hover:bg-zinc-600 dark:focus:bg-zinc-700;
+
+  }
+}

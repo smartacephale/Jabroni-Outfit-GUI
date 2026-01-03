@@ -1,36 +1,64 @@
-import { type Reactive, reactive, watch } from 'vue'
-import type { RecordV } from './types';
+import { type Reactive, reactive, type WatchStopHandle, watch } from 'vue';
+import type { StoreStateRaw } from '../types';
+
+const LOCAL_STORAGE_KEY = 'state_acephale';
 
 export class PersistentState {
-  public state: Reactive<RecordV>;
+  public state: Reactive<StoreStateRaw>;
+  private watchStopHandler: WatchStopHandle;
 
-  constructor(state_: RecordV, private key = "state_acephale") {
+  constructor(
+    storeStateRaw: StoreStateRaw,
+    private key = LOCAL_STORAGE_KEY,
+  ) {
     this.key = key;
-    this.state = reactive(state_);
+    this.state = reactive(storeStateRaw);
     this.sync();
-    this.watchPersistence();
+    this.watchStopHandler = this.watchPersistence();
+  }
+
+  dispose() {
+    this.watchStopHandler();
+    window.removeEventListener('focus', this.setFromLocalStorage);
+    document.removeEventListener('visibilitychange', this.setFromLocalStorage);
   }
 
   sync() {
-    this.trySetFromLocalStorage();
-    window.addEventListener('focus', this.trySetFromLocalStorage);
+    this.setFromLocalStorage();
+    window.addEventListener('focus', this.setFromLocalStorage);
+    document.addEventListener('visibilitychange', this.setFromLocalStorage);
   }
 
   watchPersistence() {
-    watch(this.state, (value) => {
-      this.saveToLocalStorage(this.key, value);
-    });
+    return watch(
+      this.state,
+      () => {
+        this.saveToLocalStorage();
+      },
+      { immediate: false, deep: true },
+    );
   }
 
-  saveToLocalStorage(key: string, value: RecordV) {
-    localStorage.setItem(key, JSON.stringify(value));
+  get persistentOnly() {
+    const persistentKeys = Object.keys(this.state).filter(
+      (k) => !k.startsWith('$'),
+    );
+    const persistentOnly = Object.assign(
+      {},
+      ...persistentKeys.map((k) => ({ [k]: this.state[k] })),
+    );
+    return persistentOnly;
   }
 
-  trySetFromLocalStorage = () => {
+  saveToLocalStorage() {
+    localStorage.setItem(this.key, JSON.stringify(this.persistentOnly));
+  }
+
+  setFromLocalStorage = () => {
     const localStorageValue = localStorage.getItem(this.key);
     if (localStorageValue !== null) {
-      const parsedState = JSON.parse(localStorageValue) as RecordV;
+      const parsedState = JSON.parse(localStorageValue) as StoreStateRaw;
       Object.assign(this.state, parsedState);
     }
-  }
+  };
 }

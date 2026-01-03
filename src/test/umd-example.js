@@ -1,31 +1,62 @@
-const {
-  JabroniOutfitStore,
-  JabroniOutfitUI,
-  defaultStateWithDurationAndPrivacy,
-  defaultSchemeWithPrivateFilter
-} = window.jabronioutfit;
+const { JabronioStore, JabronioGUI } = window.jabronioutfit;
 
-const myState = {
-  gradientColor1: { value: "red", persistent: false, watch: true },
-  gradientColor2: { value: "coral", persistent: false, watch: true },
-  gradientColor3: { value: "orange", persistent: false, watch: true },
-  gradientEnabled: { value: true, persistent: false, watch: true },
-  uiEnabled: { value: true, persistent: true, watch: true }
-}
-const store = new JabroniOutfitStore(myState);
+const example = () => {
+  const customState = {
+    myFancyVariable: true,
+  };
+  const store = new JabronioStore(customState);
 
-const ui = new JabroniOutfitUI(store, {
-  gradientColor1: [{ type: "text", model: "localState.gradientColor1", placeholder: "color", labelBefore: "color1" }],
-  gradientColor2: [{ type: "text", model: "localState.gradientColor2", placeholder: "color", labelBefore: "color2" }],
-  gradientColor3: [{ type: "text", model: "localState.gradientColor3", placeholder: "color", labelBefore: "color3" }],
-  gradientEnabled: [{ type: "checkbox", model: "localState.gradientEnabled", labelBefore: "gradient enabled" }],
-});
+  const scheme = [
+    {
+      title: 'Colors',
+      collapsed: true,
+      content: [
+        {
+          $color1: 'coral',
+        },
+        {
+          color2: 'crimson',
+        },
+        {
+          $color3: 'tomato',
+        },
+        {
+          size: 100,
+          type: 'range',
+          max: '500',
+          min: '0',
+        },
+        {
+          gradientEnabled: true,
+          label: 'gradient enabled',
+        },
+        {
+          reset: () => {
+            store.state.$color1 = 'darkslateblue';
+            store.state.color2 = 'maroon';
+            store.state.$color3 = 'darksalmon';
+          },
+        },
+      ],
+    },
+  ];
 
-function drawGradient() {
-  const { gradientColor1, gradientColor2, gradientColor3, gradientEnabled } = store.localState;
-  if (!gradientEnabled) { document.body.style.background = 'coral'; return; }
-  document.body.style.background = `radial-gradient(${gradientColor1}, ${gradientColor2}, ${gradientColor3})`;
-}
+  new JabronioGUI(scheme, store);
 
-drawGradient();
-store.subscribe(drawGradient);
+  function drawGradient() {
+    const { $color1, color2, $color3, gradientEnabled, size } = store.state;
+    if (!gradientEnabled) {
+      document.body.style.background = '#000';
+      return;
+    }
+    document.body.style.background = `repeating-radial-gradient(${$color1}, ${color2}, ${$color3} ${size}%)`;
+  }
+
+  drawGradient();
+
+  store.subscribe(() => {
+    drawGradient();
+  });
+};
+
+example();
