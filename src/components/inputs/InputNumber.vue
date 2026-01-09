@@ -15,7 +15,7 @@ const name = computed(() => props.element.name as string);
   <input
     type="number"
     v-model="props.state[name]"
-    class="w-full border-2 px-1 py-1 focus:outline-none tw-input-colors"
+    class="w-full box-border border-2 px-1 py-1 focus:outline-none tw-input-colors"
     :placeholder="props.element.placeholder || ''"
     :min="props.element.min || ''"
     :max="props.element.max || ''"

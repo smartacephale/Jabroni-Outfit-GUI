@@ -26,7 +26,7 @@ const name = computed(() => props.element.name as string);
     <input
       type="number"
       v-model="props.state[name]"
-      class="w-20 border-2 px-1 py-1 text-center focus:outline-none tw-input-colors"
+      class="w-20 box-border border-2 px-1 py-1 text-center focus:outline-none tw-input-colors"
       oninput="this.previousElementSibling.value = this.value"
     >
   </div>
