@@ -16,9 +16,14 @@ const name = computed(() => props.element.name as string);
   <label class="relative inline-flex items-center cursor-pointer">
     <input type="checkbox" v-model="props.state[name]" class="peer sr-only">
     <span
-      class="h-4 w-4 border-2 border-black dark:border-zinc-700 flex items-center justify-center peer-checked:bg-black dark:peer-checked:bg-zinc-400"
+      class="h-4 w-4 border-2 border-black flex items-center justify-center 
+        peer-checked:bg-black 
+        dark:peer-checked:bg-gray-600 dark:bg-zinc-700"
     >
-      <Check v-if="props.state[name]" class="peer-checked:block text-gray-900 text-[12px]"/>
+      <Check
+        v-if="props.state[name]"
+        class="peer-checked:block text-black text-[12px] stroke-2"
+      />
     </span>
   </label>
 </template>
