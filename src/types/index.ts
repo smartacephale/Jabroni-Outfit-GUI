@@ -41,3 +41,8 @@ export type HTMLInputType = 'checkbox' | 'text' | 'number' | 'range' | '';
 export type HTMLTagOrInputType = keyof HTMLElementTagNameMap | HTMLInputType;
 
 export type HTMLTag = keyof HTMLElementTagNameMap;
+
+export type ExtractValuesByKey<
+  T extends readonly any[],
+  K extends string,
+> = Extract<T[number], { [P in K]: any }>[K];

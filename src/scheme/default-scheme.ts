@@ -1,6 +1,6 @@
-import type { SchemeInput } from '../types';
+import type { ExtractValuesByKey, SchemeInput } from '../types';
 
-export const DefaultScheme: SchemeInput = [
+export const DefaultScheme = [
   {
     title: 'Text Filter',
     collapsed: true,
@@ -69,7 +69,6 @@ export const DefaultScheme: SchemeInput = [
       },
     ],
   },
-
   {
     title: 'Quality Filter',
     content: [{ filterHD: false, label: 'HD' }],
@@ -100,16 +99,20 @@ export const DefaultScheme: SchemeInput = [
       },
     ],
   },
-];
+] as const satisfies SchemeInput;
 
 function selectFromScheme(keys: string[], scheme: SchemeInput): SchemeInput {
   return scheme.filter((g) => g.title && keys.some((k) => k === g.title));
 }
 
-export function setupScheme(
-  selectFromDefaults: string[],
-  customScheme: SchemeInput = [],
-  order?: string[],
+export function setupScheme<
+  K extends ExtractValuesByKey<typeof DefaultScheme, 'title'>,
+  T extends SchemeInput,
+  TK extends ExtractValuesByKey<T, 'title'>,
+>(
+  selectFromDefaults: K[],
+  customScheme: T = [] as unknown as T,
+  order?: (K | TK)[],
 ) {
   const selectedScheme: SchemeInput = selectFromScheme(
     selectFromDefaults,

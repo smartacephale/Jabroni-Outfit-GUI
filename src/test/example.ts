@@ -12,7 +12,7 @@ const example2 = () => {
   const store = new JabronioStore(customState);
 
   const scheme: SchemeInput = setupScheme(
-    DefaultScheme.map((t) => t.title).filter(Boolean) as string[],
+    DefaultScheme.map((t) => t.title).filter(Boolean),
     // [],
     [
       {

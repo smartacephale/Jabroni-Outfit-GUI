@@ -19,7 +19,7 @@ const scheme = computed(() => {
     v-if="props.state.uiEnabled"
     id="jabroni-app"
     :data-theme="props.state.darkmode ? 'dark' : 'bright'"
-    :class="`${props.position}
+    :class="`isolate ${props.position}
             w-85 max-h-118 flex flex-col m-2
             bg-white  border-2 border-black dark:border-gray-700 dark:bg-zinc-800 dark:text-zinc-300
             shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
