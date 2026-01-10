@@ -2,7 +2,7 @@
 <h3 align="center">Small GUI and Persistent State library based on Vue</h1>
 <p align="center"><a href="https://smartacephale.github.io/Jabroni-Outfit-GUI/">https://smartacephale.github.io/Jabroni-Outfit-GUI/</a></p> 
 <p align="center">
-  <img src="https://repository-images.githubusercontent.com/842958864/1e2ce513-9289-4e51-b68b-0e7f3de255d0" alt="Sublime's custom image"/>
+  <img src="https://repository-images.githubusercontent.com/842958864/8e8f8ff5-f92b-45b4-afec-505fa53cc9e7" alt="Sublime's custom image"/>
 </p>
 
 ### Features
