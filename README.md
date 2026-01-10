@@ -11,7 +11,7 @@
 
 ### Usage
 
-**Import the Library:**
+**Import the Library:**    "ui",
 
 ```javascript
 import { JabronioStore, JabronioGUI } from 'jabroni-outfit';
