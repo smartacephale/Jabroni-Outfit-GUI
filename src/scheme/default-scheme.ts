@@ -119,11 +119,11 @@ export function setupScheme<
     DefaultScheme,
   );
 
-  selectedScheme.push(...customScheme);
+  const finalScheme = [...customScheme, ...selectedScheme];
 
   if (order) {
-    return selectFromScheme(order, selectedScheme);
+    return selectFromScheme(order, finalScheme);
   }
 
-  return selectedScheme;
+  return finalScheme;
 }

@@ -30,4 +30,3 @@ export function propsDifference<
 
   return { d1, d2 };
 }
-
