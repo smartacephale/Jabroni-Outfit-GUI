@@ -1,7 +1,7 @@
 {
   "name": "jabroni-outfit",
   "description": "Small GUI and persistent state lib based on Vue.",
-  "version": "2.0.9",
+  "version": "2.0.92",
   "license": "MIT",
   "keywords": [
     "gui",
