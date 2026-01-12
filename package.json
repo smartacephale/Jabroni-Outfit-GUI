@@ -1,7 +1,7 @@
 {
   "name": "jabroni-outfit",
   "description": "Small GUI and persistent state lib based on Vue.",
-  "version": "2.0.92",
+  "version": "2.0.93",
   "license": "MIT",
   "keywords": [
     "gui",
@@ -43,11 +43,13 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "@unocss/preset-wind4": "^66.5.12",
     "@vitejs/plugin-vue": "^6.0.3",
     "autoprefixer": "^10.4.23",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.5.3",
+    "unocss": "^66.5.12",
     "vite": "^7.3.0",
     "vite-plugin-css-injected-by-js": "^3.5.2",
     "vite-plugin-dts": "^4.5.4",

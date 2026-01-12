@@ -2,6 +2,11 @@
 
 @layer base, components, utilities;
 
+.taper-class {
+  display: block;
+  all: unset; 
+}
+
 @layer base {
   .taper-class {
     @import "tailwindcss/preflight";
@@ -21,10 +26,66 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer components {
-  .tw-input-colors {
-    @apply border-black focus:outline-none focus:bg-yellow-50;
-    @apply dark:text-zinc-300 dark:bg-zinc-700 dark:focus:outline-gray-600
+  .uno-input-colors {
+    @apply border-black focus:outline-none focus:bg-yellow-50
+      dark:text-zinc-300 dark:bg-zinc-700 dark:focus:outline-gray-600
                   dark:hover:bg-zinc-600 dark:focus:bg-zinc-700;
+  }
 
+   .uno-box-color {
+    @apply bg-white text-black border-black dark:border-gray-700 dark:bg-zinc-800 dark:text-zinc-300
+            shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+  } 
+
+  .uno-color { 
+    @apply bg-black text-white;
+  }
+  .uno-header-color { 
+    @apply flex items-center justify-between p-2 border-b-2 select-none border-black bg-white hover:bg-gray-200
+        dark:border-gray-700 dark:bg-zinc-800 dark:hover:bg-gray-600;
+  }
+  .uno-btn-color {
+    @apply border-black hover:bg-black hover:text-white transition-colors
+                dark:bg-gray-600 dark:border-zinc-800 dark:hover:bg-gray-500;
+  }
+
+  .uno-section-color {
+    @apply  border-black bg-gray-50 hover:bg-gray-200
+                dark:border-gray-700 dark:bg-zinc-800 dark:hover:bg-gray-600;
+  }
+
+  .uno-section-border {
+    @apply border-black dark:border-gray-700;
+  }
+  
+  .uno-badge-colors {
+    @apply dark:border-zinc-700 dark:bg-gray-600 dark:text-zinc-300;
+  }
+
+  .uno-btn-font {
+    @apply font-semibold text-[11px];
+  }
+
+  /* 
+
+    INPUTS
+
+  */
+
+  .uno-checkbox-mark {
+    @apply peer-checked:block text-black text-[12px] stroke-2;
+  }
+
+  .uno-checkbox-colors {
+    @apply h-4 w-4 border-2 flex items-center justify-center peer-checked:bg-black border-black  
+        dark:peer-checked:bg-gray-600 dark:bg-zinc-700;
+  }
+
+  .uno-checkbox-label {
+    @apply relative inline-flex items-center cursor-pointer;
+  }
+
+  .uno-checkbox-input {
+    @apply sr-only;
   }
 }

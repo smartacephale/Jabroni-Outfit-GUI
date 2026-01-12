@@ -12,7 +12,7 @@ const name = computed(() => props.element.name as string);
 </script>
 <template>
   <label>{{ props.element.label }}</label>
-  <div class="flex items-center gap-1 w-full">
+  <div class=":uno: flex items-center gap-1 w-full">
     <input
       type="range"
       min="0"
@@ -26,7 +26,7 @@ const name = computed(() => props.element.name as string);
     <input
       type="number"
       v-model="props.state[name]"
-      class="w-20 box-border border-2 px-1 py-1 text-center focus:outline-none tw-input-colors"
+      class=":uno: w-20 box-border border-2 px-1 py-1 text-center focus:outline-none uno-input-colors"
       oninput="this.previousElementSibling.value = this.value"
     >
   </div>

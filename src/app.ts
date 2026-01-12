@@ -1,3 +1,4 @@
+// import 'virtual:uno.css';// main.ts
 import './style/index.css';
 import { parseDom } from 'billy-herrington-utils';
 import { createApp } from 'vue';

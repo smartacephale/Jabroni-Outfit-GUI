@@ -8,12 +8,10 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-  <div class="col-span-2 pt-1">
+  <div class=":uno: col-span-2 pt-1">
     <button
       @click="props.element.callback"
-      class="w-full box-border border-2 border-black py-1 font-semibold text-[11px]
-                                   hover:bg-black hover:text-white transition-colors
-                dark:bg-gray-600 dark:border-zinc-800 dark:hover:bg-gray-500"
+      class=":uno: w-full box-border border-2 py-1 uno-btn-font uno-btn-color"
     >
       {{ props.element.name }}
     </button>

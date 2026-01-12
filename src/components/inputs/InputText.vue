@@ -15,7 +15,7 @@ const name = computed(() => props.element.name as string);
   <input
     type="text"
     v-model="props.state[name]"
-    class="w-full box-border border-2 px-1 py-1 focus:outline-none tw-input-colors"
+    class="w-full box-border border-2 px-1 py-1 focus:outline-none uno-input-colors"
     :placeholder="props.element.placeholder || ''"
   >
 </template>

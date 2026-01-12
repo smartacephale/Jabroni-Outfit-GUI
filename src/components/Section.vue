@@ -22,17 +22,14 @@ const collapsed = computed(() => !!props.state[props.group.id]);
 </script>
 <template>
   <div
-    class="border-2 border-black 
-                dark:border-gray-700 "
+    class="border-2 uno-section-border"
   >
     <div
       @click="switchCollapsed"
-      class="border-b-2 border-black px-2 py-1 flex items-center gap-1
-                        cursor-pointer bg-gray-50 hover:bg-gray-200
-                dark:border-gray-700 dark:bg-zinc-800 dark:hover:bg-gray-600"
+      class="border-b-2 px-2 py-1 flex items-center gap-1 cursor-pointer uno-section-color"
     >
       <Chevron :collapsed="!collapsed" class="text-sm"/>
-      <span class="font-medium">{{ props.group.title }}</span>
+      <span class=":uno: font-medium">{{ props.group.title }}</span>
     </div>
 
     <div

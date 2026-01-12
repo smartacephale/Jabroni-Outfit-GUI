@@ -19,15 +19,11 @@ const scheme = computed(() => {
     v-if="props.state.uiEnabled"
     id="jabroni-app"
     :data-theme="props.state.darkmode ? 'dark' : 'bright'"
-    :class="`isolate ${props.position}
-            w-85 max-h-118 flex flex-col m-2
-            bg-white  border-2 border-black dark:border-gray-700 dark:bg-zinc-800 dark:text-zinc-300
-            shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
-            text-black text-xs font-light`"
+    :class="`:uno: ${props.position} w-85 max-h-118 flex flex-col m-2 border-2 text-xs font-light uno-box-color`"
   >
     <Header :state="props.state" :scheme="props.scheme"/>
 
-    <div class="flex-1 overflow-y-auto p-2 space-y-2" v-if="props.state.hidden">
+    <div class=":uno: flex-1 overflow-y-auto p-2 space-y-2" v-if="props.state.hidden">
       <Section :state="props.state" :group="group" v-for="group in scheme"/>
     </div>
   </div>

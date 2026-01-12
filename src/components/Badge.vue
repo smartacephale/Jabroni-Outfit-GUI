@@ -23,7 +23,7 @@ const textContent = computedExpression(el.value?.text || '');
 <template>
   <span
     v-if="vif"
-    class="bg-black text-white px-1.5 py-1 text-[11px] font-semibold dark:border-2 dark:border-zinc-700 dark:bg-gray-600 dark:text-zinc-300"
+    class=":uno: px-1.5 py-1 uno-btn-font dark:border-2 uno-color uno-badge-colors"
   >
     {{ textContent }}</span
   >

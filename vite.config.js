@@ -1,8 +1,7 @@
 import path from 'node:path';
-import tailwindcss from '@tailwindcss/postcss';
 import vue from '@vitejs/plugin-vue';
+import UnoCSS from 'unocss/vite';
 import { defineConfig } from 'vite';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dts from 'vite-plugin-dts';
 
 const APP_VERSION = process.env.npm_package_version;
@@ -11,8 +10,9 @@ export default () => {
   return defineConfig({
     plugins: [
       vue(),
-      tailwindcss(),
-      cssInjectedByJsPlugin(),
+      UnoCSS({
+        mode: 'vue-scoped',
+      }),
       dts({ rollupTypes: true }),
     ],
     define: {
