@@ -1,5 +1,6 @@
 import {
   defineConfig,
+  presetAttributify,
   presetWind4,
   transformerCompileClass,
   transformerDirectives,
@@ -14,31 +15,14 @@ export default defineConfig({
   },
   presets: [
     presetWind4({
-      important: true,
-      preflight: true,
+      important: '#jabroni-outfit-root', 
+      preflight: false,
       dark: {
         dark: '[data-theme="dark"]',
         light: '[data-theme="dark"]',
       },
     }),
-  ],
-  preflights: [
-    {
-      getCSS: ({ theme }) => `
-        :host {
-          box-sizing: border-box;
-          border-width: 0;
-          border-style: solid;
-          border-color: #e5e7eb;
-          --un-default-text-opacity: 1;
-          --un-default-bg-opacity: 1;
-          --un-default-border-opacity: 1;
-        }
-        *, ::before, ::after {
-          box-sizing: border-box;
-        }
-      `,
-    },
+    presetAttributify(),
   ],
   transformers: [
     transformerVariantGroup(),

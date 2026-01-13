@@ -25,6 +25,7 @@ export default () => {
       },
       sourcemap: true,
       rollupOptions: {
+      external: ['uno.css'],
         output: {
           sourcemapBaseUrl: `https://cdn.jsdelivr.net/npm/jabroni-outfit@${APP_VERSION}/dist/`,
         },

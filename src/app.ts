@@ -1,3 +1,4 @@
+import './style/index.css';
 import 'virtual:uno.css';
 import { createApp } from 'vue';
 import App from './components/App.vue';
@@ -7,27 +8,21 @@ import type { SchemeInput } from './types';
 
 const DEFAULT_ROOT = 'jabroni-outfit-root';
 
-function createShadow() {
-  const host = document.createElement('div');
-  host.id = DEFAULT_ROOT;
-  host.style.position = 'relative';
-  host.style.zIndex = '9999999';
-  document.body.appendChild(host);
-  // const shadow = host.attachShadow({ mode: 'open' });
-
-  // const styleTag = document.createElement('style');
-  // styleTag.textContent = unoStyles;
-  // shadow.appendChild(styleTag);
-
-  const appRoot = document.createElement('div');
-  // shadow.appendChild(appRoot);
-  host.append(appRoot);
-
-  return appRoot;
-}
-
 export class JabronioGUI {
   public app: ReturnType<typeof createApp>;
+
+  private createRoot() {
+    const host = document.createElement('div');
+    host.id = DEFAULT_ROOT;
+    host.style.position = 'relative';
+    host.style.zIndex = '9999999';
+    document.body.appendChild(host);
+
+    const appRoot = document.createElement('div');
+    host.append(appRoot);
+
+    return appRoot;
+  }
 
   constructor(
     scheme: SchemeInput,
@@ -40,7 +35,7 @@ export class JabronioGUI {
       scheme: parsed.scheme,
       position,
     });
-    const root = createShadow();
+    const root = this.createRoot();
     this.app.mount(root);
   }
 }

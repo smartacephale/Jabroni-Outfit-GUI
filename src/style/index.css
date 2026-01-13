@@ -1,0 +1,20 @@
+#jabroni-outfit-root {
+  all: initial; 
+  display: block;
+  position: fixed;
+  z-index: 999999;
+  
+  font-family: sans-serif;
+  color: #333;
+  line-height: 1.5;
+  
+  --un-default-text-opacity: 1;
+  --un-default-bg-opacity: 1;
+  --un-default-border-opacity: 1;
+}
+
+#jabroni-outfit-root *, 
+#jabroni-outfit-root *::before, 
+#jabroni-outfit-root *::after {
+  box-sizing: border-box;
+}
