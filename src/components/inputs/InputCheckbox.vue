@@ -13,14 +13,17 @@ const name = computed(() => props.element.name as string);
 </script>
 <template>
   <label>{{ props.element.label }}</label>
-  <label class="uno-checkbox-label">
-    <input type="checkbox" v-model="props.state[name]" class="uno-checkbox-input">
+  <label class="relative inline-flex items-center cursor-pointer">
+    <input type="checkbox" v-model="props.state[name]" class="peer sr-only">
     <span
-      class="uno-checkbox-colors"
+      class="h-5 w-5 border-2 box-border flex items-center justify-center 
+        peer-checked:bg-black border-black
+        transition-colors
+        dark:(peer-checked:bg-gray-700)"
     >
       <Check
         v-if="props.state[name]"
-        class="uno-checkbox-mark"
+        class="peer-checked:block text-black text-sm stroke-2"
       />
     </span>
   </label>

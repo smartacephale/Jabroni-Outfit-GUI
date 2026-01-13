@@ -15,7 +15,11 @@ const name = computed(() => props.element.name as string);
   <input
     type="number"
     v-model="props.state[name]"
-    class=":uno: w-full box-border border-2 px-1 py-1 focus:outline-none uno-input-colors!"
+    class=":uno: w-full box-border border-2 px-1 py-1
+      border-black focus:outline-none focus:bg-yellow-50
+      transition-colors
+      dark:(text-zinc-300 bg-zinc-700 focus:outline-gray-600
+        hover:bg-zinc-600 focus:bg-zinc-700)"
     :placeholder="props.element.placeholder || ''"
     :min="props.element.min || ''"
     :max="props.element.max || ''"

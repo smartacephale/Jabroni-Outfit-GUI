@@ -1,6 +1,4 @@
-// import 'virtual:uno.css';// main.ts
-import './style/index.css';
-import { parseDom } from 'billy-herrington-utils';
+import 'virtual:uno.css';
 import { createApp } from 'vue';
 import App from './components/App.vue';
 import { SchemeParser } from './scheme/parser';
@@ -9,24 +7,31 @@ import type { SchemeInput } from './types';
 
 const DEFAULT_ROOT = 'jabroni-outfit-root';
 
+function createShadow() {
+  const host = document.createElement('div');
+  host.id = DEFAULT_ROOT;
+  host.style.position = 'relative';
+  host.style.zIndex = '9999999';
+  document.body.appendChild(host);
+  // const shadow = host.attachShadow({ mode: 'open' });
+
+  // const styleTag = document.createElement('style');
+  // styleTag.textContent = unoStyles;
+  // shadow.appendChild(styleTag);
+
+  const appRoot = document.createElement('div');
+  // shadow.appendChild(appRoot);
+  host.append(appRoot);
+
+  return appRoot;
+}
+
 export class JabronioGUI {
   public app: ReturnType<typeof createApp>;
-
-  private getRoot(rootSelector: string) {
-    if (rootSelector === DEFAULT_ROOT) {
-      const rootEl = parseDom(
-        `<div id="${rootSelector}" style="position: relative; z-index: 999999;"></div>`,
-      );
-      document.body.appendChild(rootEl);
-    }
-    document.getElementById(rootSelector)?.classList.add('taper-class');
-    return `#${rootSelector}`;
-  }
 
   constructor(
     scheme: SchemeInput,
     store: JabronioStore,
-    rootSelector = DEFAULT_ROOT,
     position = 'fixed right-0 bottom-0',
   ) {
     const parsed = SchemeParser.parse(scheme, store);
@@ -35,6 +40,7 @@ export class JabronioGUI {
       scheme: parsed.scheme,
       position,
     });
-    this.app.mount(this.getRoot(rootSelector));
+    const root = createShadow();
+    this.app.mount(root);
   }
 }

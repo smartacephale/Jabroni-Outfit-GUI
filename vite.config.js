@@ -8,13 +8,7 @@ const APP_VERSION = process.env.npm_package_version;
 
 export default () => {
   return defineConfig({
-    plugins: [
-      vue(),
-      UnoCSS({
-        mode: 'vue-scoped',
-      }),
-      dts({ rollupTypes: true }),
-    ],
+    plugins: [vue(), UnoCSS(), dts({ rollupTypes: true })],
     define: {
       'process.env': {},
       __VUE_OPTIONS_API__: false,

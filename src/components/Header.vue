@@ -16,19 +16,22 @@ const badge = computed(() => {
 </script>
 <template>
   <div
-    class=":uno: uno-header-color"
+    class=":uno: flex items-center justify-between p-2 border-b-2 select-none 
+        border-black bg-white hover:bg-gray-200
+        transition-colors
+        dark:(border-gray-700 bg-zinc-800 hover:bg-gray-600 text-zinc-300)"
   >
     <div class=":uno: flex items-center gap-2">
       <Badge :state="props.state" :group="badge" v-if="!!badge"/>
-      <span class=":uno: font-medium tracking-widest text-[14px]">Config</span>
+      <span class=":uno: font-medium font-mono tracking-widest text-base">Config</span>
     </div>
-    <div class=":uno: flex gap-2 items-center">
+    <div class=":uno: flex gap-2">
       <Sun
-        class=":uno: text-lg hover:text-gray-500 cursor-pointer"
+        class=":uno: text-lg hover:text-gray-500 cursor-pointer transition-colors"
         @click="props.state.darkmode = !props.state.darkmode"
       />
       <Minus
-        class=":uno: text-lg hover:text-gray-500 cursor-pointer"
+        class=":uno: text-lg hover:text-gray-500 cursor-pointer transition-colors"
         @click="props.state.hidden = !props.state.hidden"
       />
     </div>
