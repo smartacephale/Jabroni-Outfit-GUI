@@ -1,4 +1,3 @@
-import { parseIntegerOr } from 'billy-herrington-utils';
 import { watch } from 'vue';
 import type {
   Callback,
@@ -7,6 +6,7 @@ import type {
   StoreStateOptions,
   StoreStateRaw,
 } from '../types';
+import { parseIntegerOr } from '../utils/index.ts';
 import { StoreStateDefault } from './default-state';
 import { PersistentState } from './persistent-state';
 

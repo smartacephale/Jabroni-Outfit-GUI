@@ -30,3 +30,7 @@ export function propsDifference<
 
   return { d1, d2 };
 }
+
+export function parseIntegerOr(n: string, or: number | string) {
+  return ((num) => (Number.isNaN(num) ? or : num))(parseInt(n));
+}

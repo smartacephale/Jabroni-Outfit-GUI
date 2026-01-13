@@ -1,5 +1,5 @@
 import { JabronioGUI } from '../app';
-import { DefaultScheme, setupScheme } from '../scheme/default-scheme';
+import { setupScheme } from '../scheme/default-scheme';
 import { JabronioStore } from '../store';
 import type { SchemeInput, StoreStateOptions } from '../types';
 
