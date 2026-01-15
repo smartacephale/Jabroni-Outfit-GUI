@@ -26,3 +26,7 @@ const name = computed(() => props.element.name as string);
     :step="props.element.step || ''"
   >
 </template>
+
+<style>
+/* @unocss-placeholder */
+</style>

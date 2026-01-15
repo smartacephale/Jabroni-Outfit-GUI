@@ -13,7 +13,7 @@ const props = defineProps<{
     <button
       @click="props.element.callback"
       class=":uno: w-full box-border border-2 py-1 font-semibold text-xs 
-      border-black hover:(bg-black text-white)
+      border-black hover:(bg-black text-white) bg-gray-100!
       transition-colors
       dark:(bg-gray-600 border-zinc-800 hover:bg-gray-500)"
     >
@@ -21,3 +21,7 @@ const props = defineProps<{
     </button>
   </div>
 </template>
+
+<style>
+/* @unocss-placeholder */
+</style>

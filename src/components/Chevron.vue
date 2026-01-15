@@ -8,3 +8,7 @@ const props = defineProps<{ collapsed: boolean }>();
   <ChevronUp class=":uno: text-(--muted-foreground)" v-if="!props.collapsed"/>
   <ChevronDown class=":uno: text-(--muted-foreground)" v-if="props.collapsed"/>
 </template>
+
+<style>
+/* @unocss-placeholder */
+</style>

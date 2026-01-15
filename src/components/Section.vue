@@ -22,14 +22,14 @@ const collapsed = computed(() => !!props.state[props.group.id]);
 </script>
 <template>
   <div
-    class="border-2 border-black
+    class=":uno: border-2 border-black
       *:font-normal *:text-sm *:font-mono
       transition-colors
        dark:(border-gray-700 bg-zinc-800 hover:bg-gray-600 text-zinc-300)"
   >
     <div
       @click="switchCollapsed"
-      class="border-b-2 px-2 py-1 flex items-center gap-1 cursor-pointer
+      class=":uno: border-b-2 px-2 py-1 flex items-center gap-1 cursor-pointer
        border-black bg-gray-50 hover:bg-gray-200
        transition-colors
        dark:(border-gray-700 bg-zinc-800 hover:bg-gray-600 text-zinc-300)"
@@ -40,8 +40,7 @@ const collapsed = computed(() => !!props.state[props.group.id]);
 
     <div
       v-if="!collapsed"
-      class="p-2 grid grid-cols-[90px_1fr] gap-y-2 gap-x-2 items-center
-      
+      class=":uno: p-2 grid grid-cols-[5.5rem_1fr] gap-y-2 gap-x-2 items-center
        dark:(border-gray-700 bg-zinc-800 text-zinc-300)"
       v-for="se in props.group.content"
     >
@@ -69,3 +68,7 @@ const collapsed = computed(() => !!props.state[props.group.id]);
     </div>
   </div>
 </template>
+
+<style>
+/* @unocss-placeholder */
+</style>

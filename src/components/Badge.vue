@@ -23,8 +23,14 @@ const textContent = computedExpression(el.value?.text || '');
 <template>
   <span
     v-if="vif"
-    class=":uno: px-1.5 py-1 uno-btn-font dark:border-2 bg-black text-white dark:border-zinc-700 dark:bg-gray-600 dark:text-zinc-300"
+    class=":uno: px-1.5 py-1 font-mono font-semibold text-sm 
+    bg-black text-white 
+    dark:(border-zinc-700 bg-gray-600 text-zinc-300 border-2)"
   >
     {{ textContent }}</span
   >
 </template>
+
+<style>
+/* @unocss-placeholder */
+</style>

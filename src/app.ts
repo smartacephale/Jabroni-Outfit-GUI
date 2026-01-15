@@ -1,28 +1,18 @@
-import './style/index.css';
-import 'virtual:uno.css';
-import { createApp } from 'vue';
-import App from './components/App.vue';
+import '@unocss/reset/normalize.css';
+import { defineCustomElement } from 'vue';
+import AppCustomElement from './components/App.vue'; // Note the .ce.vue extension
 import { SchemeParser } from './scheme/parser';
 import type { JabronioStore } from './store';
 import type { SchemeInput } from './types';
 
-const DEFAULT_ROOT = 'jabroni-outfit-root';
+const TAG_NAME = 'jabronio-widget';
+const CustomElementDef = defineCustomElement(AppCustomElement);
+if (!customElements.get(TAG_NAME)) {
+  customElements.define(TAG_NAME, CustomElementDef);
+}
 
 export class JabronioGUI {
-  public app: ReturnType<typeof createApp>;
-
-  private createRoot() {
-    const host = document.createElement('div');
-    host.id = DEFAULT_ROOT;
-    host.style.position = 'relative';
-    host.style.zIndex = '9999999';
-    document.body.appendChild(host);
-
-    const appRoot = document.createElement('div');
-    host.append(appRoot);
-
-    return appRoot;
-  }
+  public element: InstanceType<typeof CustomElementDef>;
 
   constructor(
     scheme: SchemeInput,
@@ -30,12 +20,19 @@ export class JabronioGUI {
     position = 'fixed right-0 bottom-0',
   ) {
     const parsed = SchemeParser.parse(scheme, store);
-    this.app = createApp(App, {
+
+    this.element = new CustomElementDef();
+
+    Object.assign(this.element, {
       state: store.state,
       scheme: parsed.scheme,
-      position,
+      position: position,
     });
-    const root = this.createRoot();
-    this.app.mount(root);
+
+    document.body.appendChild(this.element);
+  }
+
+  public destroy() {
+    this.element.remove();
   }
 }

@@ -15,7 +15,7 @@ const name = computed(() => props.element.name as string);
   <input
     type="text"
     v-model="props.state[name]"
-    class="w-full box-border border-2 px-1 py-1 
+    class=":uno: w-full box-border border-2 px-1 py-1 
       font-mono
       focus:outline-none border-black focus:bg-yellow-50 hover:bg-gray-100
       transition-colors
@@ -24,3 +24,7 @@ const name = computed(() => props.element.name as string);
     :placeholder="props.element.placeholder || ''"
   >
 </template>
+
+<style>
+/* @unocss-placeholder */
+</style>

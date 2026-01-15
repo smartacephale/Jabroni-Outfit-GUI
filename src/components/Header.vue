@@ -37,3 +37,7 @@ const badge = computed(() => {
     </div>
   </div>
 </template>
+
+<style>
+/* @unocss-placeholder */
+</style>

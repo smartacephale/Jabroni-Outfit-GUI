@@ -68,3 +68,7 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 </style>
+
+<style>
+/* @unocss-placeholder */
+</style>

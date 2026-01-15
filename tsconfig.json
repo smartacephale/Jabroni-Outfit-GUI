@@ -26,6 +26,7 @@
     "noImplicitThis": true,
     "noUncheckedIndexedAccess": true,
     "verbatimModuleSyntax": true,
+    "noUncheckedSideEffectImports": true,
 
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
