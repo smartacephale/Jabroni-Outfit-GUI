@@ -12,24 +12,6 @@ export default defineConfig({
     fontFamily: {
       mono: 'monospace',
     },
-
-    colors: {
-      'bg-white': '#ffffff',
-      white: '#ffffff',
-      black: '#000000',
-      zinc: {
-        300: '#d4d4d8',
-        700: '#3f3f46',
-        800: '#27272a',
-      },
-      gray: {
-        100: '#f3f4f6',
-        200: '#e5e7eb',
-        500: '#6b7280',
-        600: '#4b5563',
-        700: '#374151',
-      },
-    },
   },
   presets: [
     presetWind3({

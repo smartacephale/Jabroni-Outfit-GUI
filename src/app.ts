@@ -5,14 +5,21 @@ import { SchemeParser } from './scheme/parser';
 import type { JabronioStore } from './store';
 import type { SchemeInput } from './types';
 
-const TAG_NAME = 'jabronio-widget';
-const CustomElementDef = defineCustomElement(AppCustomElement);
-if (!customElements.get(TAG_NAME)) {
-  customElements.define(TAG_NAME, CustomElementDef);
-}
-
 export class JabronioGUI {
-  public element: InstanceType<typeof CustomElementDef>;
+  private createCustomElement() {
+    const TAG_NAME = 'jabronio-widget';
+    const CustomElementDef = defineCustomElement(AppCustomElement);
+    if (!customElements.get(TAG_NAME)) {
+      customElements.define(TAG_NAME, CustomElementDef);
+    }
+    return new CustomElementDef();
+  }
+
+  public element: ReturnType<typeof this.createCustomElement>;
+
+  public dispose() {
+    this.element.remove();
+  }
 
   constructor(
     scheme: SchemeInput,
@@ -21,7 +28,7 @@ export class JabronioGUI {
   ) {
     const parsed = SchemeParser.parse(scheme, store);
 
-    this.element = new CustomElementDef();
+    this.element = this.createCustomElement();
 
     Object.assign(this.element, {
       state: store.state,
@@ -30,9 +37,5 @@ export class JabronioGUI {
     });
 
     document.body.appendChild(this.element);
-  }
-
-  public destroy() {
-    this.element.remove();
   }
 }
