@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { SchemeParsed, StoreState } from '../types';
-import Badge from './Badge.vue';
-import Minus from './icons/Minus.vue';
-import Sun from './icons/Sun.vue';
+import Badge from './badge.vue';
+import Minus from './icons/minus.vue';
+import Sun from './icons/sun.vue';
 
 const props = defineProps<{
   state: StoreState;

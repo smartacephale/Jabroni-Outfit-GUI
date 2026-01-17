@@ -34,6 +34,7 @@ export class SchemeElement {
     if (this.type !== 'div') return;
     if (this.value !== undefined) {
       let parsedType: string = typeof this.value;
+      if (parsedType === 'time') return;
       if (parsedType === 'function') {
         parsedType = 'button';
       } else if (parsedType === 'string') {
@@ -57,11 +58,7 @@ export class SchemeElement {
   }
 
   private parseLabel() {
-    if (
-      this.label !== undefined ||
-      this.type === 'button'
-    )
-      return;
+    if (this.label !== undefined || this.type === 'button') return;
     this.label = this.name;
   }
 

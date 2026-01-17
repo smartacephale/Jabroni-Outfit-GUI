@@ -13,7 +13,7 @@ const example2 = () => {
 
   const scheme: SchemeInput = setupScheme(
     // DefaultScheme.map((t) => t.title).filter(Boolean),
-    [],
+    ['Duration Filter', 'Badge'],
     [
       {
         title: 'Colors',

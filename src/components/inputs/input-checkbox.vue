@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import type { SchemeElement } from '../../scheme/scheme-element';
 import type { StoreState } from '../../types';
-import Check from '../icons/Check.vue';
+import Check from '../icons/check.vue';
 
 const props = defineProps<{
   state: StoreState;

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { SchemeParsed, StoreState } from '../types';
-import Header from './Header.vue';
-import Section from './Section.vue';
+import Header from './header.vue';
+import Section from './section.vue';
 
 const props = defineProps<{
   state: StoreState;

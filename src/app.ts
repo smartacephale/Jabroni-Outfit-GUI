@@ -1,6 +1,6 @@
 import '@unocss/reset/normalize.css';
 import { defineCustomElement } from 'vue';
-import AppCustomElement from './components/App.vue'; // Note the .ce.vue extension
+import AppCustomElement from './components/app.vue';
 import { SchemeParser } from './scheme/parser';
 import type { JabronioStore } from './store';
 import type { SchemeInput } from './types';

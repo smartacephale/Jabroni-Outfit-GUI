@@ -26,16 +26,17 @@ export const DefaultScheme = [
     collapsed: true,
     content: [
       { filterDuration: false, label: 'enable' },
-      { filterDurationMinutes: false, label: 'minutes (seconds by default)' },
       {
         filterDurationFrom: 0,
         watch: 'filterDuration',
         label: 'from',
+        type: 'time',
       },
       {
         filterDurationTo: 600,
         watch: 'filterDuration',
         label: 'to',
+        type: 'time',
       },
     ],
   },

@@ -23,9 +23,9 @@ const textContent = computedExpression(el.value?.text || '');
 <template>
   <span
     v-if="vif"
-    class=":uno: px-1.5 py-1 font-mono font-semibold text-sm 
-    bg-black text-white 
-    dark:(border-zinc-700 bg-gray-600 text-zinc-300 border-2)"
+    class=":uno: px-1.5 py-1 font-mono font-semibold text-xs 
+    bg-black text-white border-zinc-700 border-2
+    dark:(border-zinc-700 bg-gray-700 text-slate-300)"
   >
     {{ textContent }}</span
   >

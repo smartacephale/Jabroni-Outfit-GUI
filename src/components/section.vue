@@ -2,12 +2,13 @@
 import { computed } from 'vue';
 import type { SchemeElement } from '../scheme/scheme-element';
 import type { SchemeGroup, StoreState } from '../types';
-import Chevron from './Chevron.vue';
-import InputCheckbox from './inputs/InputCheckbox.vue';
-import InputNumber from './inputs/InputNumber.vue';
-import InputRange from './inputs/InputRange.vue';
-import InputText from './inputs/InputText.vue';
-import RowButton from './RowButton.vue';
+import RowButton from './button.vue';
+import Chevron from './chevron.vue';
+import InputCheckbox from './inputs/input-checkbox.vue';
+import InputNumber from './inputs/input-number.vue';
+import InputRange from './inputs/input-range.vue';
+import InputText from './inputs/input-text.vue';
+import InputTime from './inputs/input-time.vue';
 
 const props = defineProps<{
   state: StoreState;
@@ -65,6 +66,7 @@ const collapsed = computed(() => !!props.state[props.group.id]);
         :element="se"
         v-if="se.type === 'button'"
       />
+      <InputTime :state="props.state" :element="se" v-if="se.type === 'time'"/>
     </div>
   </div>
 </template>

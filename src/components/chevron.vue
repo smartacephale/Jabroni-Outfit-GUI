@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ChevronDown from './icons/ChevronDown.vue';
-import ChevronUp from './icons/ChevronUp.vue';
+import ChevronDown from './icons/chevron-down.vue';
+import ChevronUp from './icons/chevron-up.vue';
 
 const props = defineProps<{ collapsed: boolean }>();
 </script>
