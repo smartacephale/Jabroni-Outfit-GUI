@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import type { SchemeParsed, StoreState } from '../types';
-import Header from './header.vue';
-import Section from './section.vue';
+import { computed } from "vue";
+import type { SchemeParsed, StoreState } from "../types";
+import Header from "./header.vue";
+import Section from "./section.vue";
 
 const props = defineProps<{
-  state: StoreState;
-  scheme: SchemeParsed;
-  position: string;
+	state: StoreState;
+	scheme: SchemeParsed;
+	position: string;
 }>();
 
 const scheme = computed(() => {
-  return props.scheme.filter((g) => g.title !== 'Badge');
+	return props.scheme.filter((g) => g.title !== "Badge");
 });
 </script>
 <template>
@@ -19,10 +19,10 @@ const scheme = computed(() => {
     v-if="props.state.uiEnabled"
     id="jabroni-app"
     :data-theme="props.state.darkmode ? 'dark' : 'bright'"
-    :class="props.position"
-  >
+    class="fixed right-0 bottom-0 z-9999999"
+    >
     <div
-      class=":uno: w-85 max-h-118 flex flex-col m-2 border-2
+      class=":uno: w-85 max-h-118 flex flex-col m-2 border-2 text-black text-sm
           border-black shadow-brutal dark:(border-gray-700)"
     >
       <Header :state="props.state" :scheme="props.scheme"/>

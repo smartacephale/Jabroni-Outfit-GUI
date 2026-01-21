@@ -1,12 +1,32 @@
 import path from 'node:path';
 import UnoCSS from 'unocss/vite';
 import Vue from 'unplugin-vue/vite';
-import { defineConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import monkey from 'vite-plugin-monkey';
 
 const APP_VERSION = process.env.npm_package_version;
 
-export default defineConfig({
+const devConfig: UserConfig = {
+  plugins: [
+    Vue({
+      customElement: true,
+    }),
+    UnoCSS({
+      mode: 'shadow-dom',
+    }),
+    monkey({
+      entry: 'src/main.ts',
+      userscript: {
+        namespace: 'npm/vite-plugin-monkey',
+        match: ['*://*/*'],
+        'run-at': 'document-idle',
+      },
+    }),
+  ],
+};
+
+const buildConfig: UserConfig = {
   plugins: [
     Vue({
       customElement: true,
@@ -23,7 +43,6 @@ export default defineConfig({
     __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
   },
   build: {
-    // watch: false,
     minify: true,
     lib: {
       entry: path.resolve(__dirname, './src/index.ts'),
@@ -38,4 +57,11 @@ export default defineConfig({
       },
     },
   },
+};
+
+export default defineConfig(({ mode }) => {
+  if (mode === 'development') {
+    return devConfig;
+  }
+  return buildConfig;
 });

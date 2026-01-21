@@ -1,21 +1,22 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import type { SchemeElement } from '../../scheme/scheme-element';
-import type { StoreState } from '../../types';
+import { computed } from "vue";
+import type { SchemeElement } from "../../scheme/scheme-element";
+import type { StoreState } from "../../types";
 
 const props = defineProps<{
-  state: StoreState;
-  element: SchemeElement;
+	state: StoreState;
+	element: SchemeElement;
 }>();
 
 const name = computed(() => props.element.name as string);
 </script>
-<template>
-  <label>{{ props.element.label }}</label>
+<template> 
+  <label class=":uno: justify-self-start text-left text-mono">{{ props.element.label }}</label>
+
   <input
     type="number"
     v-model="props.state[name]"
-    class=":uno: w-full box-border border-2 px-1 py-1
+    class=":uno: w-full box-border border-2 p-1 text-sm
       border-black focus:outline-none focus:bg-yellow-50
       transition-colors
       dark:(text-zinc-300 bg-zinc-700 focus:outline-gray-600
