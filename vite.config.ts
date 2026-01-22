@@ -16,7 +16,7 @@ const devConfig: UserConfig = {
       mode: 'shadow-dom',
     }),
     monkey({
-      entry: 'src/main.ts',
+      entry: 'src/monkey-test.ts',
       userscript: {
         namespace: 'npm/vite-plugin-monkey',
         match: ['*://*/*'],

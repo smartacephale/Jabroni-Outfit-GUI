@@ -86,7 +86,7 @@ export class SchemeParser {
         const { content, ...rest } = schemeGroup;
         const newContent = content.map(
           (rawSchemeElement: RawSchemeElement) =>
-            new SchemeElement(rawSchemeElement),
+            new SchemeElement(rawSchemeElement, this.store.eventSubject),
         );
         return { content: newContent, ...rest } as SchemeGroup<SchemeElement>;
       },

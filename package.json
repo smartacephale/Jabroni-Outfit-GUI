@@ -1,7 +1,7 @@
 {
   "name": "jabroni-outfit",
   "description": "Small GUI and persistent state lib based on Vue.",
-  "version": "2.0.98",
+  "version": "2.0.991",
   "license": "MIT",
   "keywords": [
     "gui",
@@ -10,7 +10,13 @@
     "persistent-state",
     "state-management",
     "typescript",
-    "vue"
+    "vue",
+    "unocss",
+    "tampermonkey",
+    "violentmonkey",
+    "userscript",
+    "embed",
+    "shadow-dom"
   ],
   "author": "smartacephale atm.mormon@protonmail.com (https://github.com/smartacephale)",
   "type": "module",
@@ -42,22 +48,23 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-		"@types/node": "^25.0.9",
-		"@unocss/reset": "^66.6.0",
-		"@unocss/transformer-compile-class": "^66.6.0",
-		"@unocss/transformer-directives": "^66.6.0",
-		"@unocss/transformer-variant-group": "^66.6.0",
-		"@vitejs/plugin-vue": "^6.0.3",
-		"typescript": "^5.5.3",
-		"unocss": "^66.5.12",
-		"unplugin-vue": "^6.2.0",
-		"vite": "^7.3.0",
-		"vite-plugin-dts": "^4.5.4",
-		"vite-plugin-monkey": "^7.1.1",
-		"vite-plugin-vue-shadow-style": "^1.0.0",
-		"vue-tsc": "^3.2.1"
-	},
-	"dependencies": {
-		"vue": "^3.5.26"
-	}
+    "@types/node": "^25.0.9",
+    "@unocss/reset": "^66.6.0",
+    "@unocss/transformer-compile-class": "^66.6.0",
+    "@unocss/transformer-directives": "^66.6.0",
+    "@unocss/transformer-variant-group": "^66.6.0",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "typescript": "^5.5.3",
+    "unocss": "^66.5.12",
+    "unplugin-vue": "^6.2.0",
+    "vite": "^7.3.0",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-monkey": "^7.1.1",
+    "vite-plugin-vue-shadow-style": "^1.0.0",
+    "vue-tsc": "^3.2.1"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.2",
+    "vue": "^3.5.26"
+  }
 }

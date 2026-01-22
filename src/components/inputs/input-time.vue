@@ -78,7 +78,7 @@ const onKeyDown = (e: KeyboardEvent, key: keyof typeof Duration) => {
 </script>
 
 <template>
-  <label class=":uno: justify-self-start text-left text-mono">{{ props.element.label }}</label>
+  <label class=":uno: justify-self-start text-left font-mono">{{ props.element.label }}</label>
 
   <div
     class=":uno: flex box-border border-2 p-.5 justify-center w-34 text-sm

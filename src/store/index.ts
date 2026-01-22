@@ -1,6 +1,6 @@
+import { Subject } from 'rxjs';
 import { watch } from 'vue';
 import type {
-  Callback,
   Primitive,
   StoreState,
   StoreStateOptions,
@@ -11,23 +11,14 @@ import { StoreStateDefault } from './default-state';
 import { PersistentState } from './persistent-state';
 
 export class JabronioStore {
-  private callbacks: Callback<StoreStateRaw>[] = [];
   public state: StoreState;
+  public stateSubject = new Subject<StoreStateRaw>();
+  public eventSubject = new Subject<string>();
 
   constructor(options?: StoreStateOptions) {
     const storeOptions = Object.assign({}, StoreStateDefault, options);
     this.state = new PersistentState({}).state;
     this.parseState(storeOptions);
-  }
-
-  subscribe(callback: Callback<StoreStateRaw>) {
-    this.callbacks.push(callback);
-  }
-
-  notify(subject: StoreStateRaw) {
-    this.callbacks.forEach((cb) => {
-      cb(subject);
-    });
   }
 
   add(key: string, value: Primitive, watchKey?: string, safe?: boolean) {
@@ -43,7 +34,7 @@ export class JabronioStore {
           }
         }
         const subject = typeof watchKey === 'string' ? watchKey : key;
-        this.notify({ [subject]: this.state[subject] as Primitive });
+        this.stateSubject.next({ [subject]: this.state[subject] as Primitive });
       },
       { deep: true },
     );

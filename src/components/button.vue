@@ -14,7 +14,7 @@ const props = defineProps<{
       @click="props.element.callback"
       class=":uno: w-full box-border border-2 p-.5 
       font-medium font-mono text-sm cursor-pointer 
-      border-black 
+      border-black bg-white
       hover:(bg-black text-white)
       dark:(bg-gray-600 border-zinc-800 hover:bg-gray-500 text-zinc-300)"
     >

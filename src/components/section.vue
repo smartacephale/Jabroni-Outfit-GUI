@@ -23,7 +23,7 @@ const collapsed = computed(() => !!props.state[props.group.id]);
 </script>
 <template>
   <div
-    class=":uno: border-2 border-black
+    class=":uno: border-2 border-black m-y-3
      *:text-sm *:font-mono!
       transition-colors
        dark:(border-gray-700 bg-zinc-800 hover:bg-gray-600 text-zinc-300)"

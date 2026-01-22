@@ -12,8 +12,8 @@ const props = defineProps<{
 const name = computed(() => props.element.name as string);
 </script>
 <template>
-  <label class=":uno: justify-self-start text-left text-mono">{{ props.element.label }}</label>
-  
+  <label class=":uno: justify-self-start text-left font-mono">{{ props.element.label }}</label>
+
   <label class=":uno: relative inline-flex items-center cursor-pointer">
     <input type="checkbox" v-model="props.state[name]" class="peer sr-only">
     <span

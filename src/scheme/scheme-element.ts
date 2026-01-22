@@ -1,3 +1,4 @@
+import type { Subject } from 'rxjs';
 import type {
   HTMLInputType,
   HTMLTag,
@@ -21,22 +22,28 @@ export class SchemeElement {
   public placeholder?: string;
   public id: string;
 
-  constructor(schemeElement: RawSchemeElement) {
+  constructor(schemeElement: RawSchemeElement, eventSubject: Subject<string>) {
     const { d2 } = propsDifference(this, schemeElement);
     Object.assign(this, schemeElement);
     this.parseModel(d2);
-    this.parseType();
+    this.parseType(eventSubject);
     this.parseLabel();
     this.id = this.name || uuidv4();
+    if (this.type === 'button') {
+      console.log('button', this);
+    } else {
+      console.log('other', this);
+    }
   }
 
-  private parseType() {
+  private parseType(eventSubject: Subject<string>) {
     if (this.type !== 'div') return;
     if (this.value !== undefined) {
       let parsedType: string = typeof this.value;
       if (parsedType === 'time') return;
       if (parsedType === 'function') {
         parsedType = 'button';
+        this.parseButton(eventSubject);
       } else if (parsedType === 'string') {
         parsedType = 'text';
       } else if (parsedType === 'number') {
@@ -60,6 +67,23 @@ export class SchemeElement {
   private parseLabel() {
     if (this.label !== undefined || this.type === 'button') return;
     this.label = this.name;
+  }
+
+  private parseButton(eventSubject: Subject<string>) {
+    if (typeof this.value === 'function') {
+      // console.log("typeof this.value === 'function'", this);
+      this.type = 'button';
+      const temp = this.value;
+      this.value = () => {
+        eventSubject.next(this.name as string);
+        temp();
+      };
+    } else if (this.type === 'button') {
+      // console.log("(this.type === 'button')", this);
+      this.value = () => {
+        eventSubject.next(this.name as string);
+      };
+    }
   }
 
   private parseModel(differenceKeys: string[]) {

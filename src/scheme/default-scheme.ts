@@ -44,16 +44,10 @@ export const DefaultScheme = [
     title: 'Sort By',
     content: [
       {
-        views: () => {
-          //@ts-expect-error
-          window.sortByViews?.();
-        },
+        'sort by views': () => {},
       },
       {
-        duration: () => {
-          //@ts-expect-error
-          window.sortByDuration?.();
-        },
+        'sort by duration': () => {},
       },
     ],
   },
