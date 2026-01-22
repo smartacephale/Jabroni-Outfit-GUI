@@ -1,4 +1,4 @@
-<p align="center"><img src=""></img></p> 
+<p align="center"><img width="100" src="https://github.com/smartacephale/Jabroni-Outfit-GUI/blob/main/docs/jabroni-outfit-logo.png?raw=true"></img></p> 
 <h1 align="center">Jabroni Outfit GUI</h1>
 <h3 align="center">Small GUI and Persistent State library based on Vue</h1>
 <p align="center"><a href="https://smartacephale.github.io/Jabroni-Outfit-GUI/">https://smartacephale.github.io/Jabroni-Outfit-GUI/</a></p> 
