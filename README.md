@@ -1,3 +1,4 @@
+<p align="center"><img src=""></img></p> 
 <h1 align="center">Jabroni Outfit GUI</h1>
 <h3 align="center">Small GUI and Persistent State library based on Vue</h1>
 <p align="center"><a href="https://smartacephale.github.io/Jabroni-Outfit-GUI/">https://smartacephale.github.io/Jabroni-Outfit-GUI/</a></p> 
@@ -26,48 +27,54 @@ const { JabronioStore, JabronioGUI } = window.jabronioutfit;
 ### Example
 
 ```javascript
-const { JabronioStore, JabronioGUI } = window.jabronioutfit;
+const { JabronioGUI, JabronioStore, setupScheme } = window.jabronioutfit;
 
-const example = () => {
+const example2 = () => {
   const customState = {
-    myFancyVariable: true,
+    uiEnabled: true,
+    hidden: false,
   };
+
   const store = new JabronioStore(customState);
 
-  const scheme = [
-    {
-      title: 'Colors',
-      collapsed: true,
-      content: [
-        {
-          $color1: 'coral',
-        },
-        {
-          color2: 'crimson',
-        },
-        {
-          $color3: 'tomato',
-        },
-        {
-          size: 100,
-          type: 'range',
-          max: '500',
-          min: '0',
-        },
-        {
-          gradientEnabled: true,
-          label: 'gradient enabled',
-        },
-        {
-          reset: () => {
-            store.state.$color1 = 'darkslateblue';
-            store.state.color2 = 'maroon';
-            store.state.$color3 = 'darksalmon';
+  const scheme = setupScheme(
+    // DefaultScheme.map((t) => t.title).filter(Boolean),
+    [],
+    [
+      {
+        title: 'Colors',
+        collapsed: true,
+        content: [
+          {
+            $color1: 'coral',
           },
-        },
-      ],
-    },
-  ];
+          {
+            color2: 'crimson',
+          },
+          {
+            $color3: 'tomato',
+          },
+          {
+            size: 100,
+            type: 'range',
+            max: '500',
+            min: '0',
+          },
+          {
+            gradientEnabled: true,
+            label: 'gradient enabled',
+          },
+          {
+            reset: () => {
+              store.state.$color1 = 'darkslateblue';
+              store.state.color2 = 'maroon';
+              store.state.$color3 = 'darksalmon';
+            },
+          },
+        ],
+      },
+    ],
+  );
 
   new JabronioGUI(scheme, store);
 
@@ -82,10 +89,15 @@ const example = () => {
 
   drawGradient();
 
-  store.subscribe(() => {
+  store.stateSubject.subscribe((a) => {
+    console.log('trigger', a);
     drawGradient();
+  });
+
+  store.eventSubject.subscribe((e) => {
+    console.log('event', e);
   });
 };
 
-example();
+example2();
 ```
