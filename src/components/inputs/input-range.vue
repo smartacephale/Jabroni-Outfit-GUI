@@ -11,8 +11,6 @@ const props = defineProps<{
 const name = computed(() => props.element.name as string);
 </script>
 <template>
-  <label class=":uno: justify-self-start text-left font-mono">{{ props.element.label }}</label>
-
   <div class=":uno: flex items-center gap-1">
     <input
       type="range"

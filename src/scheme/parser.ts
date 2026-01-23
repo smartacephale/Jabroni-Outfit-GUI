@@ -23,8 +23,6 @@ export class SchemeParser {
     store: JabronioStore;
   } {
     const { parsedScheme, store } = new SchemeParser(...args);
-    // console.log('parsed scheme', parsedScheme);
-    // console.log('parsed store', JSON.parse(JSON.stringify(store)));
     return { scheme: parsedScheme, store };
   }
 
