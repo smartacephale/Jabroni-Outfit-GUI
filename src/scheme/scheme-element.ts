@@ -29,11 +29,6 @@ export class SchemeElement {
     this.parseType(eventSubject);
     this.parseLabel();
     this.id = this.name || uuidv4();
-    if (this.type === 'button') {
-      console.log('button', this);
-    } else {
-      console.log('other', this);
-    }
   }
 
   private parseType(eventSubject: Subject<string>) {
@@ -71,7 +66,6 @@ export class SchemeElement {
 
   private parseButton(eventSubject: Subject<string>) {
     if (typeof this.value === 'function') {
-      // console.log("typeof this.value === 'function'", this);
       this.type = 'button';
       const temp = this.value;
       this.value = () => {
@@ -79,7 +73,6 @@ export class SchemeElement {
         temp();
       };
     } else if (this.type === 'button') {
-      // console.log("(this.type === 'button')", this);
       this.value = () => {
         eventSubject.next(this.name as string);
       };
