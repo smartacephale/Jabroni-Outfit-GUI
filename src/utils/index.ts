@@ -22,11 +22,11 @@ export function propsDifference<
   T extends Record<string, unknown>,
   U extends object,
 >(obj1: T | U, obj2: T | U): { d1: string[]; d2: string[] } {
-  const o1k = Object.getOwnPropertyNames(obj1);
-  const o2k = Object.getOwnPropertyNames(obj2);
+  const a = new Set(Object.getOwnPropertyNames(obj1));
+  const b = new Set(Object.getOwnPropertyNames(obj2));
 
-  const d1 = o1k.filter((e) => o2k.every((e2) => e2 !== e));
-  const d2 = o2k.filter((e) => o1k.every((e2) => e2 !== e));
+  const d1 = a.difference(b).values().toArray();
+  const d2 = b.difference(a).values().toArray();
 
   return { d1, d2 };
 }

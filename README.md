@@ -12,12 +12,10 @@
 
 ### Usage
 
-**Import the Library:**    "ui",
-
 ```javascript
 import { JabronioStore, JabronioGUI } from 'jabroni-outfit';
 ```
-or umd cdn:
+
 ```javascript
 <script src="https://unpkg.com/jabroni-outfit@latest/dist/jabroni-outfit.umd.js"></script>
 ...
@@ -27,7 +25,7 @@ const { JabronioStore, JabronioGUI } = window.jabronioutfit;
 ### Example
 
 ```javascript
-const { JabronioGUI, JabronioStore, setupScheme } = window.jabronioutfit;
+const { JabronioGUI, JabronioStore, setupScheme, DefaultScheme } = window.jabronioutfit;
 
 const example2 = () => {
   const customState = {

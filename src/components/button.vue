@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { SchemeElement } from "../scheme/scheme-element";
-import type { StoreState } from "../types";
+import type { SchemeElement } from '../scheme/scheme-element';
+import type { StoreState } from '../types';
 
 const props = defineProps<{
-	state: StoreState;
-	element: SchemeElement;
+  state: StoreState;
+  element: SchemeElement;
 }>();
 </script>
+<!-- shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] -->
 <template>
   <div class=":uno: col-span-full">
-    <!-- shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] -->
     <button
       @click="props.element.callback"
       class=":uno: w-full box-border border-2 p-.5 

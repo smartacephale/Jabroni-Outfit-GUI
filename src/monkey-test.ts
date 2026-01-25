@@ -1,5 +1,5 @@
 import { JabronioGUI } from './app';
-import { setupScheme } from './scheme/default-scheme';
+import { DefaultScheme, setupScheme } from './scheme/default-scheme';
 import { JabronioStore } from './store';
 import type { SchemeInput, StoreStateOptions } from './types';
 
@@ -12,8 +12,8 @@ const example2 = () => {
   const store = new JabronioStore(customState);
 
   const scheme: SchemeInput = setupScheme(
-    // DefaultScheme.map((t) => t.title).filter(Boolean),
-    [],
+    DefaultScheme.map((t) => t.title).filter(Boolean),
+    // [],
     [
       {
         title: 'Colors',

@@ -44,10 +44,19 @@ export const DefaultScheme = [
     title: 'Sort By',
     content: [
       {
+        filterDurationTo: 600,
+        watch: 'filterDuration',
+        label: 'to',
+        type: 'time',
+      },
+      {
         'sort by views': () => {},
       },
       {
         'sort by duration': () => {},
+      },
+      {
+        'sort by ass': () => {},
       },
     ],
   },

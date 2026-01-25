@@ -7,7 +7,6 @@ import Section from "./section.vue";
 const props = defineProps<{
 	state: StoreState;
 	scheme: SchemeParsed;
-	position: string;
 }>();
 
 const scheme = computed(() => {
@@ -23,12 +22,12 @@ const scheme = computed(() => {
     >
     <div
       class=":uno: w-85 max-h-118 flex flex-col m-2 border-2 text-black text-sm
-          border-black shadow-brutal dark:(border-gray-700)"
+          border-black dark:(border-gray-700)"
     >
       <Header :state="props.state" :scheme="props.scheme"/>
 
       <div
-        class=":uno: flex-1 overflow-y-auto p-2 space-y-2 bg-white
+        class=":uno: flex-1 overflow-y-auto p-2 bg-white
        dark:(border-gray-700 bg-zinc-800)"
         v-if="props.state.hidden"
       >
