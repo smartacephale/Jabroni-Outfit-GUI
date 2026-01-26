@@ -1,4 +1,9 @@
-import type { ExtractValuesByKey, SchemeInput } from '../types';
+import type {
+  ExtractValuesByKey,
+  RawSchemeElement,
+  SchemeInput,
+  SchemeSection,
+} from '../types';
 
 export const DefaultScheme = [
   {
@@ -44,19 +49,10 @@ export const DefaultScheme = [
     title: 'Sort By',
     content: [
       {
-        filterDurationTo: 600,
-        watch: 'filterDuration',
-        label: 'to',
-        type: 'time',
-      },
-      {
         'sort by views': () => {},
       },
       {
         'sort by duration': () => {},
-      },
-      {
-        'sort by ass': () => {},
       },
     ],
   },
@@ -90,6 +86,7 @@ export const DefaultScheme = [
       },
       {
         writeHistory: false,
+        label: 'write history',
       },
     ],
   },
@@ -105,29 +102,16 @@ export const DefaultScheme = [
   },
 ] as const satisfies SchemeInput;
 
-function selectFromScheme(keys: string[], scheme: SchemeInput): SchemeInput {
-  return scheme.filter((g) => g.title && keys.some((k) => k === g.title));
-}
-
 export function setupScheme<
   K extends ExtractValuesByKey<typeof DefaultScheme, 'title'>,
-  T extends SchemeInput,
-  TK extends ExtractValuesByKey<T, 'title'>,
->(
-  selectFromDefaults: K[],
-  customScheme: T = [] as unknown as T,
-  order?: (K | TK)[],
-) {
-  const selectedScheme: SchemeInput = selectFromScheme(
-    selectFromDefaults,
-    DefaultScheme,
-  );
+  T extends Partial<SchemeSection<RawSchemeElement>>,
+>(scheme: (K | T)[]) {
+  const selectedScheme: SchemeInput = scheme.map((section) => {
+    if (typeof section === 'string') {
+      return DefaultScheme.find((s) => s.title === section) as unknown as T;
+    }
+    return section as T;
+  });
 
-  const finalScheme = [...customScheme, ...selectedScheme];
-
-  if (order) {
-    return selectFromScheme(order, finalScheme);
-  }
-
-  return finalScheme;
+  return selectedScheme;
 }
