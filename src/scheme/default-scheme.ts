@@ -1,6 +1,7 @@
 import type {
   ExtractValuesByKey,
   RawSchemeElement,
+  SchemeGroup,
   SchemeInput,
   SchemeSection,
 } from '../types';
@@ -81,10 +82,6 @@ export const DefaultScheme = [
         label: 'infinite scroll',
       },
       {
-        autoRequestAccess: false,
-        label: 'auto friend request',
-      },
-      {
         writeHistory: false,
         label: 'write history',
       },
@@ -110,6 +107,23 @@ export function setupScheme<
     if (typeof section === 'string') {
       return DefaultScheme.find((s) => s.title === section) as unknown as T;
     }
+
+    const existingSection = DefaultScheme.find(
+      (s) => s.title === section.title,
+    ) as Partial<SchemeGroup<RawSchemeElement>>;
+
+    if (Array.isArray(section.content) && existingSection) {
+      const newSection = { ...existingSection } as Partial<
+        SchemeSection<RawSchemeElement>
+      >;
+      newSection.content = [
+        ...(newSection.content as Partial<RawSchemeElement>[]),
+        ...section.content,
+      ];
+
+      return newSection;
+    }
+
     return section as T;
   });
 

@@ -45,6 +45,15 @@ const example2 = () => {
       ],
     },
     ...DefaultScheme.map((t) => t.title).filter(Boolean),
+    {
+      title: 'Advanced',
+      content: [
+        {
+          autoRequestAccess: false,
+          label: 'auto friend request',
+        },
+      ],
+    },
   ]);
 
   new JabronioGUI(scheme, store);
