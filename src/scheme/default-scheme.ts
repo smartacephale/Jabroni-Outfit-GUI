@@ -62,17 +62,8 @@ export const DefaultScheme = [
     content: [
       { filterPrivate: false, label: 'private' },
       { filterPublic: false, label: 'public' },
-      {
-        'check access 🔓': () => {
-          //@ts-expect-error
-          window.requestAccess?.();
-        },
-      },
+      { 'check access 🔓': () => {} },
     ],
-  },
-  {
-    title: 'Quality Filter',
-    content: [{ filterHD: false, label: 'HD' }],
   },
   {
     title: 'Advanced',
@@ -80,6 +71,14 @@ export const DefaultScheme = [
       {
         infiniteScrollEnabled: true,
         label: 'infinite scroll',
+      },
+      {
+        autoScroll: false,
+        label: 'auto scroll',
+      },
+      {
+        delay: 250,
+        label: 'scroll delay',
       },
       {
         writeHistory: false,
@@ -103,7 +102,16 @@ export function setupScheme<
   K extends ExtractValuesByKey<typeof DefaultScheme, 'title'>,
   T extends Partial<SchemeSection<RawSchemeElement>>,
 >(scheme: (K | T)[]) {
-  const selectedScheme: SchemeInput = scheme.map((section) => {
+  const schemePreprocessed = scheme.filter((s) => {
+    if (typeof s === 'string') {
+      if (scheme.find((ss) => typeof ss !== 'string' && ss.title === s)) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  const selectedScheme: SchemeInput = schemePreprocessed.map((section) => {
     if (typeof section === 'string') {
       return DefaultScheme.find((s) => s.title === section) as unknown as T;
     }

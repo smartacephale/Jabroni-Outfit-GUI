@@ -6,7 +6,7 @@ import type {
   Primitive,
   RawSchemeElement,
 } from '../types';
-import { propsDifference, uuidv4 } from '../utils';
+import { propsDifference } from '../utils';
 
 export class SchemeElement {
   public name?: string;
@@ -28,7 +28,7 @@ export class SchemeElement {
     this.parseModel(d2);
     this.parseType(eventSubject);
     this.parseLabel();
-    this.id = this.name || uuidv4();
+    this.id = this.name || window.crypto.randomUUID();
   }
 
   private parseType(eventSubject: Subject<string>) {

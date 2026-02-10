@@ -73,7 +73,7 @@ export class SchemeParser {
           if (mergedSchemeSection.title.length > 0) {
             mergedSchemeSection.id = mergedSchemeSection.title;
           }
-          this.store.add(emptySchemeSection.id, emptySchemeSection.collapsed);
+          this.store.add(mergedSchemeSection.id, mergedSchemeSection.collapsed);
           return mergedSchemeSection;
         }
       },
