@@ -32,7 +32,7 @@ const badge = computed(() => {
       />
       <Minus
         class=":uno: text-lg hover:text-gray-500 cursor-pointer transition-colors"
-        @click="props.state.hidden = !props.state.hidden"
+        @click="props.state.collapsed = !props.state.collapsed"
       />
     </div>
   </div>

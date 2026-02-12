@@ -15,7 +15,7 @@ const scheme = computed(() => {
 </script>
 <template>
   <div
-    v-if="props.state.uiEnabled"
+    v-if="props.state.enabled"
     id="jabroni-app"
     :data-theme="props.state.darkmode ? 'dark' : 'bright'"
     class="fixed right-0 bottom-0 z-9999999"
@@ -29,7 +29,7 @@ const scheme = computed(() => {
       <div
         class=":uno: flex-1 overflow-y-auto p-2 bg-white
        dark:(border-gray-700 bg-zinc-800)"
-        v-if="props.state.hidden"
+        v-if="!props.state.collapsed"
       >
         <Section :state="props.state" :group="group" v-for="group in scheme"/>
       </div>

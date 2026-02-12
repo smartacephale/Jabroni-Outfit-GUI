@@ -25,20 +25,14 @@ const { JabronioStore, JabronioGUI } = window.jabronioutfit;
 ### Example
 
 ```javascript
-const { JabronioGUI, JabronioStore, setupScheme, DefaultScheme } = window.jabronioutfit;
+const { JabronioGUI, JabronioStore, setupScheme } = window.jabronioutfit;
 
-const example2 = () => {
-  const customState = {
-    uiEnabled: true,
-    hidden: false,
-  };
+const example = () => {
+  const store = new JabronioStore();
 
-  const store = new JabronioStore(customState);
-
-  const scheme = setupScheme([
+  const scheme: SchemeInput = setupScheme([
     {
       title: 'Colors',
-      collapsed: true,
       content: [
         {
           $color1: 'coral',
@@ -68,6 +62,15 @@ const example2 = () => {
         },
       ],
     },
+    {
+      title: 'Advanced',
+      collapsed: true,
+      content: [
+        {
+          'clueless checkbox': false,
+        },
+      ],
+    },
   ]);
 
   new JabronioGUI(scheme, store);
@@ -83,8 +86,7 @@ const example2 = () => {
 
   drawGradient();
 
-  store.stateSubject.subscribe((a) => {
-    console.log('trigger', a);
+  store.stateSubject.subscribe((_) => {
     drawGradient();
   });
 
@@ -93,5 +95,5 @@ const example2 = () => {
   });
 };
 
-example2();
+example();
 ```

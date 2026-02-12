@@ -1,20 +1,14 @@
 import { JabronioGUI } from './app';
-import { DefaultScheme, setupScheme } from './scheme/default-scheme';
+import { setupScheme } from './scheme/utils';
 import { JabronioStore } from './store';
-import type { SchemeInput, StoreStateOptions } from './types';
+import type { SchemeInput } from './types';
 
-const example2 = () => {
-  const customState: StoreStateOptions = {
-    uiEnabled: true,
-    hidden: false,
-  };
-
-  const store = new JabronioStore(customState);
+const example = () => {
+  const store = new JabronioStore();
 
   const scheme: SchemeInput = setupScheme([
     {
       title: 'Colors',
-      collapsed: true,
       content: [
         {
           $color1: 'coral',
@@ -44,13 +38,12 @@ const example2 = () => {
         },
       ],
     },
-    ...DefaultScheme.map((t) => t.title).filter(Boolean),
     {
       title: 'Advanced',
+      collapsed: true,
       content: [
         {
-          autoRequestAccess: false,
-          label: 'auto friend request',
+          'clueless checkbox': false,
         },
       ],
     },
@@ -69,8 +62,7 @@ const example2 = () => {
 
   drawGradient();
 
-  store.stateSubject.subscribe((a) => {
-    console.log('trigger', a);
+  store.stateSubject.subscribe((_) => {
     drawGradient();
   });
 
@@ -79,4 +71,4 @@ const example2 = () => {
   });
 };
 
-example2();
+example();
