@@ -21,6 +21,10 @@ const devConfig: UserConfig = {
         namespace: 'npm/vite-plugin-monkey',
         match: ['*://*/*'],
         'run-at': 'document-idle',
+        grant: ['GM_addStyle'],
+      },
+      build: {
+        externalGlobals: {},
       },
     }),
   ],
@@ -54,6 +58,7 @@ const buildConfig: UserConfig = {
       external: [],
       output: {
         sourcemapBaseUrl: `https://cdn.jsdelivr.net/npm/jabroni-outfit@${APP_VERSION}/dist/`,
+        globals: {},
       },
     },
   },
