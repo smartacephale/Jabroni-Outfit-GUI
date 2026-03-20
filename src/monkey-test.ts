@@ -45,6 +45,11 @@ const example = () => {
         {
           'clueless checkbox': false,
         },
+        {
+          timeInput: 7654,
+          label: 'time',
+          type: 'time',
+        },
       ],
     },
   ]);

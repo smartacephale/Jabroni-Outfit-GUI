@@ -18,7 +18,9 @@
   <div v-if="props.state.enabled" id="jabroni-app" :data-theme="props.state.darkmode ? 'dark' : 'bright'"
     class="fixed right-0 bottom-0 z-9999999">
     <div class=":uno: w-85 max-h-118 flex flex-col m-2 border-2 text-black text-sm
-          border-black dark:(border-gray-700)">
+          border-black
+          shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] 
+          dark:(border-gray-700)">
       <Header :state="props.state" :scheme="props.scheme" :title="title" />
 
       <div class=":uno: flex-1 overflow-y-auto p-2 bg-white
